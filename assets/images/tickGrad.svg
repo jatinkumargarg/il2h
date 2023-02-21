@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 8</title>
+    <defs>
+        <linearGradient x1="100%" y1="100%" x2="0%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#F7B670" offset="0%"></stop>
+            <stop stop-color="#826BF2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PERSONAL-INFORMATION_1" transform="translate(-1100.000000, -762.000000)">
+            <g id="Group-8" transform="translate(1100.000000, 762.000000)">
+                <rect id="Rectangle-Copy-3" fill="url(#linearGradient-1)" x="0" y="0" width="36" height="36" rx="12"></rect>
+                <path d="M25.6114409,14.4569733 L16.7350243,23.5727003 C16.4587156,23.8575668 16.1133297,24 15.7679439,24 C15.422558,24 15.0426336,23.8575668 14.8008635,23.5727003 L10.414463,19.0860534 C9.86184566,18.5163205 9.86184566,17.6261128 10.414463,17.0563798 C10.9670804,16.4866469 11.8305451,16.4866469 12.3831624,17.0563798 L15.7679439,20.5459941 L23.6427415,12.4272997 C24.1953589,11.8575668 25.0588235,11.8575668 25.6114409,12.4272997 C26.1295197,12.9970326 26.1295197,13.9228487 25.6114409,14.4569733 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

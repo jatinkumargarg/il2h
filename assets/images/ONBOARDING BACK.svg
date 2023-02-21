@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <defs>
+        <linearGradient x1="100%" y1="100%" x2="0%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#F7B670" offset="0%"></stop>
+            <stop stop-color="#826BF2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="LOGIN---NUMBER---NOT-FILLED" transform="translate(-840.000000, -128.000000)">
+            <g id="Group" transform="translate(840.000000, 128.000000)">
+                <rect id="Rectangle-Copy-3" fill="url(#linearGradient-1)" x="0" y="0" width="32" height="32" rx="8"></rect>
+                <path d="M18.861352,22 C18.5574309,22.0015276 18.2653152,21.8966572 18.0495326,21.7085375 L12.3324946,16.6836126 C11.8891685,16.2916309 11.8891685,15.6585656 12.3324946,15.2665838 L18.0495326,10.2416589 C18.5031913,9.90018834 19.1794414,9.92314674 19.6017807,10.2943571 C20.0241201,10.6655674 20.0502407,11.2599496 19.6617374,11.6586877 L14.7565187,15.9700733 L19.6617374,20.2814589 C19.9900799,20.5676877 20.0899324,20.9995729 19.9147368,21.3757391 C19.7395411,21.7519054 19.3237965,21.998279 18.861352,22 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

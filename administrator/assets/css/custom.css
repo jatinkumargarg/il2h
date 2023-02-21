@@ -1,0 +1,4 @@
+.error{color: red;}
+a.nav-link.active {
+    background: #17a2b8 !important;
+}

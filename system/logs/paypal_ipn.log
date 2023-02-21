@@ -1,0 +1,81 @@
+[02/07/2020 12:42 PM] - SUCCESS!
+IPN POST Vars from Paypal:
+
+IPN Response from Paypal Server:
+ 
+
+[02/07/2020 12:48 PM] - SUCCESS!
+IPN POST Vars from Paypal:
+
+IPN Response from Paypal Server:
+ 
+
+[02/11/2020 6:51 AM] - FAIL: IPN Validation Failed.
+IPN POST Vars from Paypal:
+
+IPN Response from Paypal Server:
+ HTTP/1.1 200 OK
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Content-Type: text/html; charset=UTF-8
+Date: Tue, 11 Feb 2020 05:50:26 GMT
+Paypal-Debug-Id: 44752a085f3c6
+Set-Cookie: c9MWDuvPtT9GIMyPc3jwol1VSlO=FP7MN3Mv8WjEtafDGwT5jokIB4HwN_h4OCCXr9A6a8dAM-H3taxkn9E7-RWgw8vJiIcg8sL3RJ9RBWxX2Pex7fvJbsIc7NXFq0HYnRsXrtIWc5dIPzFAIjJ6UasA2vJy7azl3t_O_VkgN0iJPRxRfwpNioGC5thpv_Pz1F4I_QTf_t5yQLDntsK9Zdrxbc76T1PrGqhlb3LtyQWXlbHxLChB8piOGwVV-aQX8CWDZsEFpuo76ou2qh2Q8UBZbxLHkUcBUGUdQo2SVVxB0mYRDE4-33kcTl_EF-0Jkvx7MU1i0rnIJ3cUpWYVXWjSz8MCAaFvVAGyK851FXF-4P77l-YFUBs7GwC4es2-xSvTLUP0CuLl6gIf0gV-Xqmr5Pp8X9bRRMx3PwoxX5W7Q-HwGvdLlu9Pku0Lh5_YBxaIfsGsEFj252mtMEZgBye; Path=/; Domain=paypal.com; HttpOnly; Secure
+Set-Cookie: cookie_check=yes; Path=/; Domain=paypal.com; Expires=Fri, 08 Feb 2030 05:50:26 GMT; HttpOnly; Secure
+Set-Cookie: navcmd=_notify-validate; Path=/; Domain=paypal.com; HttpOnly; Secure
+Set-Cookie: navlns=0.0; Path=/; Domain=paypal.com; Expires=Thu, 10 Feb 2022 05:50:26 GMT; HttpOnly; Secure
+Set-Cookie: Apache=10.72.108.11.1581400226314088; Path=/
+Set-Cookie: X-PP-SILOVER=name%3DSANDBOX3.WEB.1%26silo_version%3D880%26app%3Dappdispatcher%26TIME%3D1581400227%26HTTP_X_PP_AZ_LOCATOR%3Dsandbox.slc; Path=/; Domain=paypal.com; Expires=Tue, 11 Feb 2020 06:20:27 GMT; HttpOnly; Secure
+Set-Cookie: X-PP-L7=1; Path=/; Domain=paypal.com; Secure
+Vary: Accept-Encoding,User-Agent
+X-Frame-Options: SAMEORIGIN
+Content-Length: 8
+Strict-Transport-Security: max-age=63072000
+
+VERIFIED
+
+[02/11/2020 6:52 AM] - SUCCESS!
+IPN POST Vars from Paypal:
+
+IPN Response from Paypal Server:
+ HTTP/1.1 200 OK
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Content-Type: text/html; charset=UTF-8
+Date: Tue, 11 Feb 2020 05:50:56 GMT
+Paypal-Debug-Id: 850a23de8399f
+Set-Cookie: c9MWDuvPtT9GIMyPc3jwol1VSlO=ZPECeYxEklqIUusFbogwJiAkrZJXNhM5p_xFSBDv3ft68ehoFafVxIsa4zjzWD65k0ZKu4KR6f3rhiDcobt6NUlHIqIbUNyY7icBQL3SW0ARb-Ph13R7mFoEeQ34JB06ORXwuj-e_hPTsFIel0RjU2azjGaRX3jTISGAAZycAGbOMGc47p58RxsBw4b2FpgFp0m0mOMYgMTAmbHzlaXyWLC7bZUa4gOSctD82jEEFowTH0-fImUOZn-l-kFlzIrbuidRikSZrSs2AWsyDafiBUmuCVPyV2sOUWImP3X6fjnlYOHhVsu3fVMiShwouTpTqI4hTHKC_tWnAI97Y5RWIfQWTjHcuuYTH67XkJfsvsuV_grZo3NLq9euMSIevZkIh_4zyzn2zJvHJK0bdD3wHu9FS3FidZYLB--OdZ4WJn2xATKGo8SAEFMZouS; Path=/; Domain=paypal.com; HttpOnly; Secure
+Set-Cookie: cookie_check=yes; Path=/; Domain=paypal.com; Expires=Fri, 08 Feb 2030 05:50:57 GMT; HttpOnly; Secure
+Set-Cookie: navcmd=_notify-validate; Path=/; Domain=paypal.com; HttpOnly; Secure
+Set-Cookie: navlns=0.0; Path=/; Domain=paypal.com; Expires=Thu, 10 Feb 2022 05:50:57 GMT; HttpOnly; Secure
+Set-Cookie: Apache=10.72.108.11.1581400256839009; Path=/
+Set-Cookie: X-PP-SILOVER=name%3DSANDBOX3.WEB.1%26silo_version%3D880%26app%3Dappdispatcher%26TIME%3D1581400257%26HTTP_X_PP_AZ_LOCATOR%3Dsandbox.slc; Path=/; Domain=paypal.com; Expires=Tue, 11 Feb 2020 06:20:57 GMT; HttpOnly; Secure
+Set-Cookie: X-PP-L7=1; Path=/; Domain=paypal.com; Secure
+Vary: Accept-Encoding,User-Agent
+X-Frame-Options: SAMEORIGIN
+Content-Length: 8
+Strict-Transport-Security: max-age=63072000
+
+VERIFIED
+
+[02/11/2020 7:15 AM] - SUCCESS!
+IPN POST Vars from Paypal:
+
+IPN Response from Paypal Server:
+ HTTP/1.1 200 OK
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Content-Type: text/html; charset=UTF-8
+Date: Tue, 11 Feb 2020 06:14:03 GMT
+Paypal-Debug-Id: 960751b0c8d68
+Set-Cookie: c9MWDuvPtT9GIMyPc3jwol1VSlO=a2438vkiv2-uEBzFuWo6KiYg9d3WqU2hK0VSDwAfrVcKpANsdLk64tMmLf4Ho8IuyfbsO0rHRKXILuuZgancjCLdInWEZvbatuxvwQ4LeEeyw5mG65neVZ5I803gNrqSGlHDy_KOaSp42kBSSZNULz_a2obIA4y6kTbLRumQzlZpQa0cbqOZPwEBFo3tJiE3Ku6pBzS5npdDxM8CPyjvybbx8Z-69-H0KCt1r0rWNsnoA5aJp4zlnivBrLhIbManHqEB7zythNOg4a6EEZfOJQkR-547C7WZ3nxcTYB50OWdwVe7I9UMWKImA1Kbb7bAgjvU-N28N482pRyeSJ8_zudJuzsFeMN1WsRr-wFf8DoLkUQi_cr-ZOTX6JVWeSnWssEIbShJ8OTQWEeX8OL4D4pmAlPgtLeUYw-eXNRqCv0xKftgPtwIiHdZ3IS; Path=/; Domain=paypal.com; HttpOnly; Secure
+Set-Cookie: cookie_check=yes; Path=/; Domain=paypal.com; Expires=Fri, 08 Feb 2030 06:14:04 GMT; HttpOnly; Secure
+Set-Cookie: navcmd=_notify-validate; Path=/; Domain=paypal.com; HttpOnly; Secure
+Set-Cookie: navlns=0.0; Path=/; Domain=paypal.com; Expires=Thu, 10 Feb 2022 06:14:04 GMT; HttpOnly; Secure
+Set-Cookie: Apache=10.72.108.11.1581401643683024; Path=/
+Set-Cookie: X-PP-SILOVER=name%3DSANDBOX3.WEB.1%26silo_version%3D880%26app%3Dappdispatcher%26TIME%3D1581401644%26HTTP_X_PP_AZ_LOCATOR%3Dsandbox.slc; Path=/; Domain=paypal.com; Expires=Tue, 11 Feb 2020 06:44:04 GMT; HttpOnly; Secure
+Set-Cookie: X-PP-L7=1; Path=/; Domain=paypal.com; Secure
+Vary: Accept-Encoding,User-Agent
+X-Frame-Options: SAMEORIGIN
+Content-Length: 8
+Strict-Transport-Security: max-age=63072000
+
+VERIFIED
+

@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA] 
+
+RewriteCond %{HTTP_HOST} !il2h
+RewriteCond %{HTTP_HOST} !localhost
+RewriteRule (.*) il2h/$1 [L,R=301]
+ 
+RewriteCond %{THE_REQUEST} ^.*/index.php
+RewriteCond %{REQUEST_URI} !=/server-status
+RewriteRule ^(.*)index.php$ il2h/$1 [R=301,L]
+ 
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule .* https://%{HTTP:Host}%{REQUEST_URI} [L,R=301]
+
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# This domain inherits the “PHP” package.
+# php -- END cPanel-generated handler, do not edit
+ </IfModule>
+ 
+  
+
