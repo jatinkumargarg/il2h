@@ -73,7 +73,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <?php  
             $menu_array = array(
-                          '1' => array('url' => 'Dashboard','favicon' => 'fas fa-tachometer-alt', 'text' => 'Dashboard'), 
+                          // '1' => array('url' => 'Dashboard','favicon' => 'fas fa-tachometer-alt', 'text' => 'Dashboard'), 
                            '2' => array('url' => 'Ngo','favicon' => 'fas fa-rss', 'text' => 'NGO'),
                            '3' => array('url' => 'Volunteer','favicon' => 'fas fa-rss', 'text' => 'Volunteer'), 
                            '4' => array('url' => 'Onsite','favicon' => 'fas fa-rss', 'text' => 'Onsite Campaigns'), 
