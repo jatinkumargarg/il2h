@@ -32,32 +32,15 @@
                         <div class="tab-content" id="myTabContent">
                            <!-- Volunteer Online Tab -->
                            <div class="tab-pane fade show active" id="volOnline" role="tabpanel" aria-labelledby="volOnline-tab">
-                              <form>
+                              <!-- <form action="Campaign/create_campaign" method="POST"> -->
+                              <?php echo form_open_multipart('Campaign/create_campaign', array('id' => 'contactForm'));?> 
                                  <div class="mb-4 mt-4 row align-items-center">
                                     <div class="col-md-12">
                                        <div class="form-group">
                                           <label for="title" class="col-form-label mb-2">Add Photo*</label>
-                                          <div class="file-wrapper">
-                                             <input class="file-input" id="js-file-input" type="file">
-                                             <div class="file-content">
-                                                <div class="file-infos">
-                                                   <svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.37">
-                                                         <g id="NGO---CREATE-REQUESTS---ONLINE" transform="translate(-232.000000, -496.000000)" fill="#24163C" fill-rule="nonzero">
-                                                            <g id="Group-2" transform="translate(232.000000, 496.000000)">
-                                                               <path d="M48,50.6666667 C49.0783891,50.6666667 50.0504908,50.0167267 50.4631413,49.0204122 C50.8757917,48.0240976 50.6477544,46.877318 49.8853333,46.1146667 L33.4266667,29.6586667 C28.220002,24.4535742 19.779998,24.4535742 14.5733333,29.6586667 L8.78133333,35.448 C7.77074077,36.4943437 7.78519367,38.1575594 8.81381713,39.1861829 C9.84244059,40.2148063 11.5056563,40.2292592 12.552,39.2186667 L18.344,33.4293333 C21.5083949,30.4053964 26.4916051,30.4053964 29.656,33.4293333 L46.1146667,49.8853333 C46.6146473,50.385465 47.2928138,50.6666667 48,50.6666667 Z" id="Path"></path>
-                                                               <path d="M42.6666667,28 C47.8213243,28 52,23.8213243 52,18.6666667 C52,13.512009 47.8213243,9.33333333 42.6666667,9.33333333 C37.512009,9.33333333 33.3333333,13.512009 33.3333333,18.6666667 C33.3333333,23.8213243 37.512009,28 42.6666667,28 Z M42.6666667,14.6666667 C44.8758057,14.6666667 46.6666667,16.4575277 46.6666667,18.6666667 C46.6666667,20.8758057 44.8758057,22.6666667 42.6666667,22.6666667 C40.4575277,22.6666667 38.6666667,20.8758057 38.6666667,18.6666667 C38.6666667,16.4575277 40.4575277,14.6666667 42.6666667,14.6666667 L42.6666667,14.6666667 Z" id="Shape"></path>
-                                                               <path d="M61.3333333,42.6666667 C59.860574,42.6666667 58.6666667,43.860574 58.6666667,45.3333333 L58.6666667,50.6666667 C58.6666667,55.0849447 55.0849447,58.6666667 50.6666667,58.6666667 L45.3333333,58.6666667 C43.860574,58.6666667 42.6666667,59.860574 42.6666667,61.3333333 C42.6666667,62.8060927 43.860574,64 45.3333333,64 L50.6666667,64 C58.0268084,63.9911837 63.9911837,58.0268084 64,50.6666667 L64,45.3333333 C64,43.860574 62.8060927,42.6666667 61.3333333,42.6666667 Z" id="Path"></path>
-                                                               <path d="M2.66666667,21.3333333 C4.139426,21.3333333 5.33333333,20.139426 5.33333333,18.6666667 L5.33333333,13.3333333 C5.33333333,8.91505533 8.91505533,5.33333333 13.3333333,5.33333333 L18.6666667,5.33333333 C20.139426,5.3333333 21.3333333,4.13942598 21.3333333,2.66666667 C21.3333333,1.19390736 20.139426,0 18.6666667,0 L13.3333333,0 C5.9731916,0.00881631023 0.00881631023,5.9731916 0,13.3333333 L0,18.6666667 C0,20.139426 1.19390733,21.3333333 2.66666667,21.3333333 Z" id="Path"></path>
-                                                               <path d="M18.6666667,58.6666667 L13.3333333,58.6666667 C8.91505533,58.6666667 5.33333333,55.0849447 5.33333333,50.6666667 L5.33333333,45.3333333 C5.33333333,43.860574 4.139426,42.6666667 2.66666667,42.6666667 C1.19390733,42.6666667 0,43.860574 0,45.3333333 L0,50.6666667 C0.00881631023,58.0268084 5.9731916,63.9911837 13.3333333,64 L18.6666667,64 C20.139426,64 21.3333333,62.8060927 21.3333333,61.3333333 C21.3333333,59.860574 20.139426,58.6666667 18.6666667,58.6666667 Z" id="Path"></path>
-                                                               <path d="M50.6666667,0 L45.3333333,0 C43.860574,0 42.6666667,1.19390733 42.6666667,2.66666667 C42.6666667,4.139426 43.860574,5.33333333 45.3333333,5.33333333 L50.6666667,5.33333333 C55.0849447,5.33333333 58.6666667,8.91505533 58.6666667,13.3333333 L58.6666667,18.6666667 C58.6666667,20.139426 59.860574,21.3333333 61.3333333,21.3333333 C62.8060927,21.3333333 64,20.139426 64,18.6666667 L64,13.3333333 C63.9911837,5.9731916 58.0268084,0.00881631023 50.6666667,0 Z" id="Path"></path>
-                                                            </g>
-                                                         </g>
-                                                      </g>
-                                                   </svg>
-                                                </div>
-                                                <!-- <p class="file-name" id="js-file-name">No file selected</p> -->
-                                             </div>
+                                          <div class="uploadBtnWrap" style="justify-content:left">
+                                              <!-- <a class="btn" href="#">Camera</a> -->
+                                              <a class="btn btnbg" href="#"><input type='file' name="camp_photo" size='20'/></a>
                                           </div>
                                        </div>
                                     </div>
@@ -66,7 +49,7 @@
                                     <div class="col-md-12">
                                        <div class="form-group">
                                           <label for="title" class="col-form-label mb-2">Title*</label>
-                                          <input type="text" id="title" class="form-control" aria-describedby="title" placeholder="Website developer needed">
+                                          <input type="text" id="title" class="form-control" aria-describedby="title" placeholder="Campaign Title" name="data[title]" required>
                                        </div>
                                     </div>
                                  </div>
@@ -74,7 +57,7 @@
                                     <div class="col-md-12">
                                        <div class="form-group">
                                           <label for="description" class="col-form-label mb-2">Description*</label>
-                                          <input type="text" id="description" class="form-control" aria-describedby="description" placeholder="Write a few words about the NGO or the task…">
+                                          <input type="text" id="description" class="form-control" aria-describedby="description" placeholder="Write a few words about the NGO or the task…" name="data[description]"  required>
                                        </div>
                                     </div>
                                  </div>
@@ -82,7 +65,7 @@
                                     <div class="col-md-6 col-lg-6">
                                        <div class="form-group">
                                           <label for="description" class="col-form-label mb-2">Assign Mentor*</label>
-                                          <select class="form-select form-control" aria-label="Default select example">
+                                          <select class="form-select form-control" aria-label="Default select example" name="data[mentor_id]"  required>
                                              <option selected>Open this select menu</option>
                                              <option value="1">One</option>
                                              <option value="2">Two</option>
@@ -93,7 +76,7 @@
                                     <div class="col-md-6 col-lg-6">
                                        <div class="form-group">
                                           <label for="description" class="col-form-label mb-2">Mentor Contact Number*</label>
-                                          <select class="form-select form-control" aria-label="Default select example">
+                                          <select class="form-select form-control" aria-label="Default select example" name="data[mentor_contact_number]" required>
                                              <option selected>Open this select menu</option>
                                              <option value="1">One</option>
                                              <option value="2">Two</option>
@@ -108,7 +91,8 @@
                                           <label for="noKids" class="form-label mb-2">Estimated No of Hours*</label>
                                           <div class="rangeWrapper">
                                              <span class="minus circle">-</span>
-                                             <span class="form-control num"><b>6</b> Hours</span>
+                                             <!-- <span class="form-control num"><b>6</b> Hours</span> -->
+                                          <input type="number" class="form-control" name="data[estimated_hour]" required>
                                              <span class="plus circle">+</span>
                                           </div>
                                        </div>
@@ -116,13 +100,13 @@
                                     <div class="col-md-6 col-lg-4">
                                        <div class="form-group">
                                           <label for="city" class="form-label mb-2">Start Date*</label>
-                                          <input type="date" id="date" class="form-control" aria-describedby="date">
+                                          <input type="date" id="date" class="form-control" aria-describedby="date" name="data[start_date]" required>
                                        </div>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
                                        <div class="form-group">
                                           <label for="city" class="form-label mb-2">End Date*</label>
-                                          <input type="date" id="date" class="form-control" aria-describedby="date">
+                                          <input type="date" id="date" class="form-control" aria-describedby="date" name="data[end_date]" required>
                                        </div>
                                     </div>
                                  </div>
@@ -131,28 +115,33 @@
                                        <label for="noKids"class="col-form-label mb-2">Attach CV*</label>
                                        <div class="uploadWrapper">
                                           <!--  -->
-                                          <label for="formFile" class="form-label"><img src="assets/images/VOS.svg" width="22" height="22"/> Upload  your CV here</label>
-                                          <input class="form-control" type="file" id="formFile" hidden>
+                                          <!-- <label for="formFile" class="form-label"><img src="assets/images/VOS.svg" width="22" height="22"/> Upload  your CV here</label> -->
+                                          <input class="form-control" type="file" id="formFile" name ="cv_url">
                                           <!--  -->
                                        </div>
                                     </div>
                                  </div>
                                  <div class="stepFormHeading">Add Questions* <small>(You can add unlimited questions here)</small></div>
                                  <!-- Repeat for Question Input -->
-                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                       <label for="noKids" class="col-form-label mb-2">Question 1</label>
-                                       <input type="text" class="form-control" id="noKids" placeholder="" aria-describedby="Question 1" required>
-                                       <div class="invalid-tooltip"> Please choose a username. </div>
-                                    </div>
+                                 <div class="camp_ques_all">
+                                  <div class="col-md-12 camp_ques camp_ques_base">
+                                      <div class="form-group">
+                                        <label for="noKids" class="col-form-label mb-2">Question </label>
+                                        <label for="noKids" class="col-form-label mb-2 camp_ques_num">1</label>
+                                        <input type="text" class="form-control" id="noKids" placeholder="" aria-describedby="Question 1" required name="data[question_name][]">
+                                        <div class="invalid-tooltip"> Please choose a username. </div>
+                                      </div>
+                                  </div>
                                  </div>
                                  <!-- Repeat for Question Input -->
-                                 <a href="#" class="addMoreQues">+ Add More Questions*</a>
+                                 <a href="#!" class="addMoreQues" onclick="addMoreQues()">+ Add More Questions</a>
                                  <div class="btnWrap mt-5">
                                     <button type="submit" class="btn borderBtn">CANCEL</button>
                                     <button type="submit" class="btn btnbg">SUBMIT REQUEST</button>
                                  </div>
-                              </form>
+                              <!-- </form> -->
+                              <?php echo form_close() ?>
+
                            </div>
                            <!--  -->
                            <!-- Volunteer On-site Tab -->
@@ -607,3 +596,12 @@
       </div>
       <!-- Modal END -->
       <?php $this->load->view('include/signup-footer') ?>
+<script>
+  function addMoreQues() {
+    var num = $('.camp_ques_all .camp_ques').length;
+    // var new_ques = $('.camp_ques_base:first').clone();
+    $('.camp_ques_all').append($('.camp_ques_base').clone());
+    $('.camp_ques_num:last').text(num+1);
+    $('.camp_ques:last').removeClass('camp_ques_base');
+  }
+</script>

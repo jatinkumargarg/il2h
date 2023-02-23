@@ -5,9 +5,9 @@ class SignUp extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-        // if($this->session->userdata('user_info')){
-        //     redirect(site_url(),'refresh');
-        // }
+        if($this->session->userdata('user_info')){
+            redirect(site_url('dashboard-ngo'));               
+        }
 
         $this->load->model('Signup_Model','SIGNUP');
         $this->load->model('Login_Model','LOGIN');              
@@ -83,7 +83,7 @@ class SignUp extends CI_Controller {
                 'email' => form_error('data[email]'),
                 'terms_condition' => form_error('data[terms_condition]'),
                 'password' => form_error('data[password]'),
-                'confirm_password' => form_error('data[confirm_password]')
+                'confirm_password' => form_error('data[confirm_password]'),
             );
             echo json_encode($array);
             exit;

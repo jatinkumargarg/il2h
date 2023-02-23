@@ -27,6 +27,25 @@ class MY_Controller extends CI_Controller {
         }
     }
 
+    function set_upload_options($path,$name){ 
+        // upload an image options
+        $config = array();
+        //give the path to upload the image in folder
+        $config['upload_path']  = $path;
+        $config['remove_spaces']= TRUE;
+        //$config['encrypt_name'] = TRUE; // for encrypting the name
+        $config['file_name']    = $name;
+        $config['allowed_types']= '*';
+        $config['max_size']= 10240;
+        
+        $config['overwrite']    = FALSE;
+        if (!is_dir($config['upload_path'])) {
+           mkdir($config['upload_path'], 0777, TRUE);
+        }
+        return $config;
+    }
+
+
        
   
 }

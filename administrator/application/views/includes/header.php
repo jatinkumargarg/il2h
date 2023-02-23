@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -74,18 +74,22 @@
           <?php  
             $menu_array = array(
                           // '1' => array('url' => 'Dashboard','favicon' => 'fas fa-tachometer-alt', 'text' => 'Dashboard'), 
-                           '2' => array('url' => 'Ngo','favicon' => 'fas fa-rss', 'text' => 'NGO'),
-                           '3' => array('url' => 'Volunteer','favicon' => 'fas fa-rss', 'text' => 'Volunteer'), 
-                           '4' => array('url' => 'Onsite','favicon' => 'fas fa-rss', 'text' => 'Onsite Campaigns'), 
-                           '5' => array('url' => 'Online','favicon' => 'fas fa-rss', 'text' => 'Online Campaigns'), 
+                           '2' => array('url' => 'Ngo/index','favicon' => 'fas fa-rss', 'text' => 'NGO'),
+                           '3' => array('url' => 'volunteer','favicon' => 'fas fa-rss', 'text' => 'Volunteer'), 
+                           '4' => array('url' => 'onsite_camp_list','favicon' => 'fas fa-rss', 'text' => 'Onsite Campaigns'), 
+                           '5' => array('url' => 'online_camp_list','favicon' => 'fas fa-rss', 'text' => 'Online Campaigns'), 
                                                  
                           );
+                          // print_r($this->router->fetch_class());die;
                 $current_classname =  $this->router->fetch_class();
+                $current_methodname =  $this->router->fetch_method();
                 foreach($menu_array AS $key => $value ){
                   $active = '';    
                   if($current_classname == $value['url'] ) {
                     $active = 'active';
-                  }      
+                  } else if($current_methodname == $value['url'] ){
+                    $active = 'active';
+                  }     
           ?>
 
 

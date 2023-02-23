@@ -28,7 +28,9 @@
                         <div class="col-md-6 col-lg-4">
                            <div class="form-group">
                               <label for="offiicial_contact_number" class="form-label mb-2">Official Contact Number</label>
-                              <input type="text" id="offiicial_contact_number" class="form-control" name="data[offiicial_contact_number]" placeholder="Ex: XX XXXXXXXXXX">
+                              <!-- <input type="text" id="offiicial_contact_number" class="form-control" name="data[offiicial_contact_number]" placeholder="Ex: XX XXXXXXXXXX"> -->
+                              <?php echo form_input(['type'=>'text','name' =>'data[offiicial_contact_number]', 'placeholder' =>"Ex: XX XXXXXXXXXX", 'class'=>'form-control', 'id'=>'offiicial_contact_number']);?>
+                              <div class="text-danger offiicial_contact_number"></div>
                            </div>
                         </div>
                         <div class="col-md-6 col-lg-4">

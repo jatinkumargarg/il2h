@@ -7,13 +7,15 @@ class Login extends CI_Controller {
 	function __construct(){
 		parent::__construct();
         if($this->session->userdata('user_info')){
-            redirect(site_url('Blogs'),'refresh');
+            // redirect(site_url('Blogs'),'refresh');
+			redirect(site_url('Dashboard'),'refresh');                          
         }
         $this->load->model('Login_Model','LOGIN');       
 	}
 	
     function index(){
         $this->data['title'] = 'Dis&Dat | Login'; // Page Title
+	
 		if($this->input->post()){  
 			
 		
@@ -37,6 +39,7 @@ class Login extends CI_Controller {
                 if($result['success']==1){
                     $result['result']['user_session'] = session_id();                 
                     $this->session->set_userdata('user_info',$result['result']);
+					// print_r(site_url());die;
 					redirect(site_url('Dashboard'),'refresh');                          
                 }
             }

@@ -72,7 +72,7 @@
                               </a>  
                            </li>
                            <li>
-                              <a class="nav-link" href="<?php echo site_url('sign-up/1'); ?>" >
+                              <a class="nav-link" href="<?php echo site_url('sign-up/3'); ?>" >
                                  As NGO
                               </a>  
                            </li>

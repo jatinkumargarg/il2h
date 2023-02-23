@@ -25,8 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $protocol = is_https() ? "https://" : "http://";
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'].'/' : "";
-$folder = "il2h";
-$config['base_url'] = $protocol.$host.$folder;
+// $folder = "il2h";
+$config['base_url'] = $protocol.$host;
 //$config['base_url'] = $protocol.$host;
 
 
@@ -125,7 +125,7 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 3600;
-$config['sess_save_path'] = APPPATH . 'cache/session/';;
+$config['sess_save_path'] = APPPATH . 'cache/session/';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 0;
 $config['sess_regenerate_destroy'] = FALSE;

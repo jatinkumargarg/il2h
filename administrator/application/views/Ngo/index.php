@@ -28,16 +28,36 @@
                             <thead>
                                 <tr>
                                    <th>S.No.</th>
-                                   <th>Title</th>
-                                   <th>Description</th>
-                                   <th>Created By</th>
+                                   <th>Name</th>
+                                   <th>City</th>
                                    <th>Created Time</th>                                   
                                    <th>Status</th>
                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>     
-                                                      
+                              <?php if(count($ngo)> 0) {
+                                        $count = 1;
+                                      
+                                        foreach($ngo AS $Key => $value){
+                                ?>
+                                <tr>
+                                  <td><?= $count?></td>
+                                  <td><?=$value['ngo_name']?></td>
+                                  <td><?=$value['city']?></td>
+                                  <td><?=$value['created_at']?></td>
+                                  <td><?php echo ($value['status'] == 1) ? "<p style='color:green;'>" . 'Active'  . "</p>" : "<p style='color:red;'>" . 'Inactive' . "</p>" ; ?></td>
+                                  <td>
+                                  <?php if ($value['status'] == 1) {?>
+                                    <a href="<?php echo site_url('Ngo/disable_ngo/'.$value['id'] . '/' . $user_type) ?>">Disable</a>
+                                  <?php } else {?>
+                                    <a href="<?php echo site_url('Ngo/enable_ngo/'.$value['id'] . '/' . $user_type) ?>">Enable</a>
+                                    <?php }?>
+                                  </td>
+                                </tr>
+                                <?php 
+                                       $count++; }  } 
+                                ?>                        
                             </tbody>                            
                         </table>
                     </div>

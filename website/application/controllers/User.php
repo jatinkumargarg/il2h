@@ -6,6 +6,7 @@ class User extends MY_Controller {
 	function __construct(){
 		parent::__construct();      
         $this->load->model('Signup_Model','SIGNUP');
+        $this->load->model('Campaign','Campaign');
         $this->user_id = $this->session->userdata['user_info']['id'];
         $this->user_type = $this->session->userdata['user_info']['user_type'];
         $user_data = $this->session->userdata['user_info'];
@@ -34,11 +35,22 @@ class User extends MY_Controller {
                     'field' => 'data[contact_email]',
                     'label' => 'Email',
                     'rules' => 'trim|valid_email|is_unique[tbl_users.contact_email]',						
+            ),
+            array(
+                'field' => 'data[offiicial_contact_number]',
+                'label' => 'Mobile Number',
+                'rules' => 'trim|required|regex_match[/^[0-9]{10}$/]'						
+            ),
+            array(
+                'field' => 'data[contact_number]',
+                'label' => 'Mobile Number',
+                'rules' => 'trim|required|regex_match[/^[0-9]{10}$/]'						
             )
         );
         $this->form_validation->set_message('is_unique', 'The %s is already taken');
         $this->form_validation->set_rules($config);	
         if($this->form_validation->run()){          
+            // die('hh');
             $data =   $this->security->xss_clean($this->input->post('data')) ;
             $data['basic_info_status'] = 1;
             $update = $this->CRUD->Update('tbl_users',array('id'=>$this->user_id), $data); 
@@ -172,10 +184,12 @@ class User extends MY_Controller {
         if(! $this->session->userdata['user_info']['id']){
             $this->load->view('login'); }
         else {
+            $res = $this->db->select('*')->where('user_type', 3)->get('tbl_users')->result_array();
+            $this->data['camp_online_all'] = $this->Campaign->get_all_campaigns(1);
+            $this->data['camp_onsite_all'] = $this->Campaign->get_all_campaigns(2);
+            // print_r($res);die;
             $this->data['page_title']  = 'Dashboard';
-            // $header_data['is_logged']
-            // $this->load->vars();
-            if($this->session->userdata['user_info']['user_type'] == 1){
+            if($this->session->userdata['user_info']['user_type'] == 3){
                 $this->load->view('dashboard_ngo',$this->data);
             } else {
                 $this->load->view('dashboard_vol',$this->data);
