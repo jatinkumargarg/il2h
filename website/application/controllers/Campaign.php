@@ -6,6 +6,9 @@ class Campaign extends MY_Controller {
 	function __construct(){
 		parent::__construct();      
         $this->load->model('Signup_Model','SIGNUP');
+        $this->load->model('Campaign_Model','Campaign_Model');
+        $this->load->model('Campaign_questions','Campaign_ques');
+        $this->load->model('Volunteer_request','Volunteer_request');
         $this->user_id = $this->session->userdata['user_info']['id'];
         $this->user_type = $this->session->userdata['user_info']['user_type'];
         $user_data = $this->session->userdata['user_info'];
@@ -20,7 +23,7 @@ class Campaign extends MY_Controller {
 	}
 
     public function create_campaign() {
-        echo '<pre>';print_r($_FILES);
+        // echo '<pre>';print_r($_FILES);
         // print_r($this->input->post('data'));
 
         $config = array(
@@ -53,14 +56,6 @@ class Campaign extends MY_Controller {
         );
         $this->form_validation->set_message('is_unique', 'The %s is already taken');
         $this->form_validation->set_rules($config);	
-        // if (empty($_FILES['camp_photo']['name']))
-        // {
-        //     $this->form_validation->set_rules('camp_photo', 'Document', 'required');
-        // }
-        // if (empty($_FILES['cv_url']['name']))
-        // {
-        //     $this->form_validation->set_rules('cv_url', 'Document', 'required');
-        // }
         if($this->form_validation->run()){    
             $data =   $this->security->xss_clean($this->input->post('data')) ;
             
@@ -99,12 +94,13 @@ class Campaign extends MY_Controller {
             // echo $update;die;
             if($update){             
                 $q = array();
-                $i = 0;
                 foreach ($camp_ques as $key => $value) {
-                    $q[$i]['question_name'] = $value;
-                    $q[$i]['campaign_id'] = $update;
+                    $q['campaign_id'] = $update;
+                    $q['question_name'] = $value;
+                    $this->CRUD->Insert('tbl_campaign_questions', $q); 
+                    unset($q['campaign_id']);
+                    unset($q['question_name']);
                 }
-                $this->CRUD->Insert('tbl_campaign_questions', $data); 
                 redirect(site_url('dashboard-ngo'));   
             }else{
                 $array = array(
@@ -130,7 +126,81 @@ class Campaign extends MY_Controller {
 
     }
 
-    
+    function camp_details($camp_id){
+        $data['value'] = $this->Campaign_Model->camp_details($camp_id);
+        $application_exist = $this->Volunteer_request->is_app_exist($this->user_id, $camp_id);
+        $data['app_exist'] = 0;
+        if ($application_exist > 0) {
+            $data['app_exist'] = 1;
+        }
+        $this->load->view('volunteer_online_details',$data);  
+	}
 
+    function create_volunteer_request($camp_id) {
+        $data['value'] = $this->Campaign_Model->camp_details($camp_id);
+        $data['camp_questions'] = $this->Campaign_ques->camp_ques($camp_id);
+        // echo '<pre>';print_r($data);die;
+        $this->load->view('volunteer_online_request_form',$data);  
+    }
+
+    public function vol_submit_request() {
+        $config = array(
+        
+            array(
+                'field' => 'data[description]',
+                'label' => 'description',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[hours_work]',
+                'label' => 'hours_work',
+                'rules' => 'trim|required',						
+            )
+        );
+        $this->form_validation->set_message('is_unique', 'The %s is already taken');
+        $this->form_validation->set_rules($config);	
+        if($this->form_validation->run()){    
+            $data =   $this->security->xss_clean($this->input->post('data')) ;
+            
+            //Upload Images
+            $this->load->library('upload');
+            $name = substr(str_replace('-','_',str_replace(' ','_',$_FILES['vol_cv']['name'] ) ),0,10).date('ymd');
+            $this->upload->initialize($this->set_upload_options('./uploads/', $name));
+
+            if ( !$this->upload->do_upload('vol_cv')) {
+                $array = array(
+                    'error'   => true,
+                    'error-div' => '<p>Error!, Something went wrong. Please try after sometime.'
+                );               
+                echo json_encode($array);
+                exit;  
+            }
+            $data['vol_cv'] = $this->upload->file_name;
+            $data['status'] = 0;
+            $data['user_id'] = $this->user_id;
+            $data['camp_ques'] = json_encode($data['ques']);
+            $update = $this->CRUD->Insert('tbl_vol_application', $data); 
+            if($update){
+                $this->session->set_flashdata('Message','Request sent successfully!!');
+                redirect(site_url('dashboard-ngo'));   
+            }else{
+                $array = array(
+                    'error'   => true,
+                    'error-div' => '<p>Error!, Something went wrong. Please try after sometime.'
+                );               
+                echo json_encode($array);
+                exit;  
+            }
+                
+        } else {
+            $array = array(
+                'error'   => true,
+                'description' => form_error('data[description]'),
+                'hours_work' => form_error('data[hours_work]')
+            );
+            echo json_encode($array);
+            exit;
+        }
+    }
 
 }

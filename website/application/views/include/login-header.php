@@ -202,3 +202,5 @@
          </div>
       </header>
       <!-- End Header -->
+
+  <?php if($this->session->flashdata('Message')) { echo $this->session->flashdata('Message');}?>

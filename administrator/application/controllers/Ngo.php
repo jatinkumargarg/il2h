@@ -80,10 +80,15 @@ class Ngo extends MY_Controller {
 
     public function approve_camp() {
         $id = $this->uri->segment(3);
+        $type = $this->uri->segment(4);
         $this->db->where('id', $id);
         $this->db->update('tbl_campaigns', array('status' => 1));
         $this->session->set_flashdata('Message', 'Campaign approved successfully!');
-		redirect(site_url('onsite_camp_list'),'refresh');                          
+        if ($type == 1) {
+            redirect(site_url('online_camp_list'),'refresh');                          
+        } else {
+            redirect(site_url('onsite_camp_list'),'refresh');                          
+        }
         
     }
 

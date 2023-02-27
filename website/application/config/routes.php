@@ -13,6 +13,8 @@ $route['submit-upload'] ='User/submit_upload_doc';
 $route['dashboard-ngo'] ='User/dashboard_ngo';
 $route['logout'] ='User/Logout';
 $route['create-campaign'] ='Campaign';
+$route['camp-details/(:any)'] = 'Campaign/camp_details/$1';
+$route['volunteer-request/(:any)'] = 'Campaign/create_volunteer_request/$1';
 
 
 /** Without login session */

@@ -6,7 +6,8 @@ class User extends MY_Controller {
 	function __construct(){
 		parent::__construct();      
         $this->load->model('Signup_Model','SIGNUP');
-        $this->load->model('Campaign','Campaign');
+        $this->load->model('Campaign_Model','Campaign');
+        $this->load->model('Volunteer_request','Volunteer_request');
         $this->user_id = $this->session->userdata['user_info']['id'];
         $this->user_type = $this->session->userdata['user_info']['user_type'];
         $user_data = $this->session->userdata['user_info'];
@@ -138,7 +139,6 @@ class User extends MY_Controller {
             $this->load->library('upload', $config1);
 
             if ( ! $this->upload->do_upload('user_doc')) {
-                // print_r($this->upload->display_errors());
                 $array = array(
                     'error'   => true,
                     'error-div' => '<p>Error!, Something went wrong. Please try after sometime.'
@@ -146,18 +146,12 @@ class User extends MY_Controller {
                 echo json_encode($array);
                 exit;  
             } else {
-                // echo 'Done';
                 $data['document'] = $_FILES['user_doc']['name'];
                 // unset($data['name']);
                 $update = $this->CRUD->Update('tbl_users',array('id'=>$this->user_id), $data); 
                 // die('here');
                 if($update == 1){             
-                    $this->data['page_title']  = 'Dashboard';
-                    $this->load->view('dashboard_ngo',$this->data); 
-                    // $array = array(
-                        //     'success'   => true,
-                        //     'redirect_url' => site_url('signup-upload')
-                        // );               
+                    redirect(site_url('dashboard-ngo'));
                 }else{
                     $array = array(
                         'error'   => true,
@@ -180,7 +174,6 @@ class User extends MY_Controller {
     }
 
     public function dashboard_ngo() {		
-            //  echo '<pre>';print_r($this->session->userdata['user_info']);
         if(! $this->session->userdata['user_info']['id']){
             $this->load->view('login'); }
         else {
@@ -190,6 +183,7 @@ class User extends MY_Controller {
             // print_r($res);die;
             $this->data['page_title']  = 'Dashboard';
             if($this->session->userdata['user_info']['user_type'] == 3){
+                $this->data['online_vol_request'] = $this->Volunteer_request->get_vol_request($this->user_id, 1);
                 $this->load->view('dashboard_ngo',$this->data);
             } else {
                 $this->load->view('dashboard_vol',$this->data);

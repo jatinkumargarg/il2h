@@ -95,7 +95,7 @@
 
                             <!-- <div class="cardActivated ml-auto">Accepted</div> -->
                           </div>
-                          <img src="assets/images/campaigns1.jpg" class="card-img-top" alt="..." width="377" height="275">
+                          <img src="uploads/<?=$value['banner_image']?>" class="card-img-top" alt="..." width="377" height="275">
                           <div class="card-img-tagIcon">
                             <div class="card-img-tagLeft">
                               <div class="card-img-tag">
@@ -127,7 +127,7 @@
                             <p class="card-body-bottom-text"><?=$value['description']?></p>
                           </div>
                           <div class="card-btnWrap">
-                            <a class="btn borderBtn" href="donateWinTravel.html">Details</a>
+                            <a class="btn borderBtn" href="<?php echo site_url('camp-details/' . $value['camp_id']) ?>">Details</a>
                             <a class="btn btnbg" href="volunteerOnlineDetail.html">Withdraw</a>
                           </div>
                         </div>
@@ -185,29 +185,38 @@
                 <!-- Filter Div Ends-->
                 <div class="row cardWrap">
                   <!--  -->
+                  <?php
+                  // echo "<pre>";print_r($camp_online_all);die;
+                  foreach ($camp_onsite_all as $key => $value) {
+
+                  ?>
                   <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
                     <div class="card largeImg">
                       <div class="card-img-wrap">
                         <div class="card-img-tag-top">
                           <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
 
-                          <div class="cardActivated ml-auto">Accepted</div>
+                          <!-- <div class="cardActivated ml-auto">Accepted</div> -->
                         </div>
-                        <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
+                        <img src="uploads/<?=$value['banner_image']?>" class="card-img-top" alt="..." width="377" height="275">
                         <div class="card-img-tagIcon">
                           <div class="card-img-tagLeft">
+                            <?php if($value['accomodation'] == 1) {?>
                             <div class="card-img-tag">
                               <span class="tagIcon">
                                 <img src="assets/images/accommodation.svg" width="18" height="16">
                               </span>
-                              <span class="tagText">Accommodation</span>
+                              <span class="tagText">Accomodation</span>
                             </div>
+                            <?php }?>
+                            <?php if($value['meals'] == 1) {?>
                             <div class="card-img-tag">
                               <span class="tagIcon">
                                 <img src="assets/images/meals.svg" width="16" height="16">
                               </span>
                               <span class="tagText">Meals</span>
                             </div>
+                            <?php }?>
                           </div>
                           <div class="card-img-views">
                             <span>Views</span>
@@ -217,12 +226,12 @@
                       </div>
                       <div class="card-body">
                         <div class="card-body-top">
-                          <h4 class="card-title">Name of NGO</h4>
-                          <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
+                          <h4 class="card-title"><?=$value['ngo_name']?></h4>
+                          <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> <?=$value['city']?>, <?=$value['country']?></p>
                         </div>
                         <div class="card-body-bottom">
-                          <h5 class="card-body-bo ttom-title">“On-site Chef Required”</h5>
-                          <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
+                          <h5 class="card-body-bo ttom-title">“<?=$value['title']?>”</h5>
+                          <p class="card-body-bottom-text"><?=$value['description']?></p>
                         </div>
                         <div class="card-btnWrap">
                           <a class="btn borderBtn" href="donateWinTravel.html">Details</a>
@@ -232,288 +241,10 @@
                     </div>
                   </div>
                   <!--  -->
-                  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                    <div class="card largeImg">
-                      <div class="card-img-wrap">
-                        <div class="card-img-tag-top">
-                          <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
-
-                          <div class="inQueue ml-auto">In Queue</div>
-                        </div>
-                        <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
-                        <div class="card-img-tagIcon">
-                          <div class="card-img-tagLeft">
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/accommodation.svg" width="18" height="16">
-                              </span>
-                              <span class="tagText">Accommodation</span>
-                            </div>
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/meals.svg" width="16" height="16">
-                              </span>
-                              <span class="tagText">Meals</span>
-                            </div>
-                          </div>
-                          <div class="card-img-views">
-                            <span>Views</span>
-                            <h4>3,288</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="card-body-top">
-                          <h4 class="card-title">Name of NGO</h4>
-                          <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
-                        </div>
-                        <div class="card-body-bottom">
-                          <h5 class="card-body-bo ttom-title">“On-site Chef Required”</h5>
-                          <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                        </div>
-                        <div class="card-btnWrap">
-                          <a class="btn borderBtn" href="donateWinTravel.html">Details</a>
-                          <a class="btn btnbg" href="volunteerOnlineDetail.html">Withdraw</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--  -->
-                  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                    <div class="card largeImg">
-                      <div class="card-img-wrap">
-                        <div class="card-img-tag-top">
-                          <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
-
-                          <span class="earnTag"><img src="assets/images/coin.svg" width="14" height="14"> Earn 50 IL2H coins</span>
-                        </div>
-                        <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
-                        <div class="card-img-tagIcon">
-                          <div class="card-img-tagLeft">
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/accommodation.svg" width="18" height="16">
-                              </span>
-                              <span class="tagText">Accommodation</span>
-                            </div>
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/meals.svg" width="16" height="16">
-                              </span>
-                              <span class="tagText">Meals</span>
-                            </div>
-                          </div>
-                          <div class="card-img-views">
-                            <span>Views</span>
-                            <h4>3,288</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="card-body-top">
-                          <h4 class="card-title">Name of NGO</h4>
-                          <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
-                        </div>
-                        <div class="card-body-bottom">
-                          <h5 class="card-body-bo ttom-title">“On-site Chef Required”</h5>
-                          <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                        </div>
-                        <div class="card-btnWrap">
-                          <a class="btn borderBtn" href="donateWinTravel.html">Details</a>
-                          <a class="btn btnbg" href="volunteerOnlineDetail.html">Withdraw</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--  -->
-                  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                    <div class="card largeImg">
-                      <div class="card-img-wrap">
-                        <div class="card-img-tag-top">
-                          <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
-
-                          <span class="earnTag"><img src="assets/images/coin.svg" width="14" height="14"> Earn 50 IL2H coins</span>
-                        </div>
-                        <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
-                        <div class="card-img-tagIcon">
-                          <div class="card-img-tagLeft">
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/accommodation.svg" width="18" height="16">
-                              </span>
-                              <span class="tagText">Accommodation</span>
-                            </div>
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/meals.svg" width="16" height="16">
-                              </span>
-                              <span class="tagText">Meals</span>
-                            </div>
-                          </div>
-                          <div class="card-img-views">
-                            <span>Views</span>
-                            <h4>3,288</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="card-body-top">
-                          <h4 class="card-title">Name of NGO</h4>
-                          <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
-                        </div>
-                        <div class="card-body-bottom">
-                          <h5 class="card-body-bo ttom-title">“On-site Chef Required”</h5>
-                          <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                        </div>
-                        <div class="card-btnWrap">
-                          <a class="btn btnbg" href="volunteerOnlineDetail.html">Read More</a>
-                          <a class="btn borderBtn" href="#"> Share</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--  -->
-                  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                    <div class="card largeImg">
-                      <div class="card-img-wrap">
-                        <div class="card-img-tag-top">
-                          <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
-
-                          <span class="earnTag"><img src="assets/images/coin.svg" width="14" height="14"> Earn 50 IL2H coins</span>
-                        </div>
-                        <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
-                        <div class="card-img-tagIcon">
-                          <div class="card-img-tagLeft">
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/accommodation.svg" width="18" height="16">
-                              </span>
-                              <span class="tagText">Accommodation</span>
-                            </div>
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/meals.svg" width="16" height="16">
-                              </span>
-                              <span class="tagText">Meals</span>
-                            </div>
-                          </div>
-                          <div class="card-img-views">
-                            <span>Views</span>
-                            <h4>3,288</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="card-body-top">
-                          <h4 class="card-title">Name of NGO</h4>
-                          <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
-                        </div>
-                        <div class="card-body-bottom">
-                          <h5 class="card-body-bo ttom-title">“On-site Chef Required”</h5>
-                          <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                        </div>
-                        <div class="card-btnWrap">
-                          <a class="btn borderBtn" href="donateWinTravel.html">Details</a>
-                          <a class="btn btnbg" href="volunteerOnlineDetail.html">Withdraw</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--  -->
-                  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                    <div class="card largeImg">
-                      <div class="card-img-wrap">
-                        <div class="card-img-tag-top">
-                          <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
-
-                          <div class="cardActivated ml-auto">Accepted</div>
-                        </div>
-                        <img src="assets/images/campaigns1.jpg" class="card-img-top" alt="..." width="377" height="275">
-                        <div class="card-img-tagIcon">
-                          <div class="card-img-tagLeft">
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/watch.svg" width="18" height="16">
-                              </span>
-                              <span class="tagText">Estimated time: 5 - 10 hours</span>
-                            </div>
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/meals.svg" width="16" height="16">
-                              </span>
-                              <span class="tagText">Meals</span>
-                            </div>
-                          </div>
-                          <div class="card-img-views">
-                            <span>Views</span>
-                            <h4>3,288</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="card-body-top">
-                          <h4 class="card-title">Name of NGO</h4>
-                          <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
-                        </div>
-                        <div class="card-body-bottom">
-                          <h5 class="card-body-bo ttom-title">“On-site Chef Required”</h5>
-                          <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                        </div>
-                        <div class="card-btnWrap">
-                          <a class="btn borderBtn" href="donateWinTravel.html">Details</a>
-                          <a class="btn btnbg" href="volunteerOnlineDetail.html">Withdraw</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--  -->
-                  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                    <div class="card largeImg">
-                      <div class="card-img-wrap">
-                        <div class="card-img-tag-top">
-                          <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
-
-                          <span class="earnTag"><img src="assets/images/coin.svg" width="14" height="14"> Earn 50 IL2H coins</span>
-                        </div>
-                        <img src="assets/images/campaigns2.jpg" class="card-img-top" alt="..." width="377" height="275">
-                        <div class="card-img-tagIcon">
-                          <div class="card-img-tagLeft">
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/accommodation.svg" width="18" height="16">
-                              </span>
-                              <span class="tagText">Accommodation</span>
-                            </div>
-                            <div class="card-img-tag">
-                              <span class="tagIcon">
-                                <img src="assets/images/meals.svg" width="16" height="16">
-                              </span>
-                              <span class="tagText">Meals</span>
-                            </div>
-                          </div>
-                          <div class="card-img-views">
-                            <span>Views</span>
-                            <h4>3,288</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="card-body-top">
-                          <h4 class="card-title">Name of NGO</h4>
-                          <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
-                        </div>
-                        <div class="card-body-bottom">
-                          <h5 class="card-body-bo ttom-title">“On-site Chef Required”</h5>
-                          <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                        </div>
-                        <div class="card-btnWrap">
-                          <a class="btn borderBtn" href="donateWinTravel.html">Details</a>
-                          <a class="btn btnbg" href="volunteerOnlineDetail.html">Withdraw</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--  -->
+                  
+                  <?php
+                  }
+                  ?>
                 </div>
 
 
@@ -762,6 +493,3 @@
     </div>
   </div>
   <?php $this->load->view('include/signup-footer') ?>
-
-</footer>
-<?php $this->load->view('include/signup-footer') ?>
