@@ -21,7 +21,17 @@ class Volunteer_request extends MY_Model {
         $this->db->where('tva.status !=', 3);
         $query = $this->db->get();
         // print_r($this->db->last_query());die;
-        // echo '<pre>';print_r($query->result_array());die;
+        return $query->result_array();
+    }
+
+    public function get_vol_list($camp_id) {
+        $this->db->select('tbc.title, tva.*, tbu.name, tbu.address_line_one, tbu.city, tbu.country');
+        $this->db->from('tbl_vol_application as tva');
+        $this->db->join('tbl_campaigns as tbc', 'tva.camp_id = tbc.id', 'inner'); 
+        $this->db->join('tbl_users as tbu', 'tva.user_id = tbu.id', 'inner');
+        $this->db->where('tva.camp_id', $camp_id);
+        $query = $this->db->get();
+        // print_r($this->db->last_query());die;
         return $query->result_array();
     }
 	

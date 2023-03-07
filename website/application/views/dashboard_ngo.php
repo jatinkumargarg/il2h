@@ -76,11 +76,15 @@
                                           <td><?= $ovr['address_line_one'] ?>, <?= $ovr['city'] ?>, <?= $ovr['country'] ?></td>
                                           <td><strong><?php echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Approved'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>"); ?></strong></td>
                                           <td>
-                                             <div class="btnWrap">
-                                                <a class="btn btnbg" href="Volunteer-Requests-Onsite.html" role="button">Accept</a>
-                                                <a class="btn borderBtn" href="#" role="button">Reject</a>
-                                                <a class="btn borderBtn" href="#" role="button">Shortlist</a>
-                                             </div>
+                                             <?php if ($ovr['status'] == 0) { ?>
+
+                                                <div class="btnWrap">
+                                                   <a class="btn btnbg" href="<?php echo site_url('Campaign/approve_vol/' . $ovr['id']) ?>" role="button">Accept</a>
+                                                   <a class="btn borderBtn" href="<?php echo site_url('Campaign/reject_vol/' . $ovr['id']) ?>" role="button">Reject</a>
+                                                   <a class="btn borderBtn" href="<?php echo site_url('Campaign/shortlist_vol/' . $ovr['id']) ?>" role="button">Shortlist</a>
+                                                </div>
+                                             <?php
+                                             } ?>
                                           </td>
                                        </tr>
                                  <?php
@@ -89,6 +93,113 @@
                                  ?>
                               </tbody>
                            </table>
+                        </div>
+
+                        <!-- NGO - Dashboard - Onsite Start -->
+                        <div class="my-4">
+                           <hr>
+                        </div>
+
+                        <!-- Filter Div -->
+                        <div class="filterWrapper row g-0">
+                           <div class="col-md-4">
+                              <ul class="nav nav-tabs">
+                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="Online-publish-tab" data-bs-toggle="tab" data-bs-target="#Online-publish" type="button" role="tab" aria-controls="Online" aria-selected="true">Published</button>
+
+                                 </li>
+                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="Online-verify-tab" data-bs-toggle="tab" data-bs-target="#Online-verify" type="button" role="tab" aria-controls="Online" aria-selected="true">In Verification</button>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+
+                        <!-- Filter Div Ends-->
+                        <div class="tab-content" id="myTabContent">
+
+                           <div class="row cardWrap tab-pane fade show active" id="Online-publish" role="tabpanel" aria-labelledby="Online-publish-tab">
+                              <!--  -->
+                              <?php
+                              if (!empty($camp_online_published)) {
+                                 foreach ($camp_online_published as $online_camp) {
+                              ?>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                       <div class="card largeImg">
+                                          <div class="card-img-wrap">
+
+                                             <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
+                                             <div class="card-img-tagIcon justify-content-end">
+
+                                                <div class="card-img-views ">
+                                                   <!-- <span>Views</span> -->
+                                                   <!-- <h4>3,288</h4> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="card-body">
+                                             <!-- <div class="card-body-top">
+                                                <h4 class="card-title">Name of NGO</h4>
+                                                <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
+                                             </div> -->
+                                             <div class="card-body-bottom removeBefore">
+                                                <h3 class="card-body-bottom-title ">“<?= $online_camp['title'] ?>”</h3>
+                                                <p class="card-body-bottom-text"><?= $online_camp['description'] ?></p>
+                                             </div>
+                                             <div class="card-btnWrap">
+                                                <a class="btn borderBtn" href="<?php echo site_url('Campaign/view_vol_list/' . $online_camp['camp_id']) ?>">View volunteer</a>
+                                                <!-- <a class="btn btnbg" href="Volunteer-Requests-Edit.html">Edit Request</a> -->
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                              <?php
+                                 }
+                              }
+                              ?>
+
+
+                           </div>
+                           <div class="row cardWrap tab-pane fade" id="Online-verify" role="tabpanel" aria-labelledby="Online-verify-tab">
+                              <?php
+                              if (!empty($camp_online_verify)) {
+                                 foreach ($camp_online_verify as $online_camp) {
+                              ?>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                       <div class="card largeImg">
+                                          <div class="card-img-wrap">
+
+                                             <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
+                                             <div class="card-img-tagIcon justify-content-end">
+
+                                                <div class="card-img-views ">
+                                                   <!-- <span>Views</span> -->
+                                                   <!-- <h4>3,288</h4> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="card-body">
+                                             <!-- <div class="card-body-top">
+                                                <h4 class="card-title">Name of NGO</h4>
+                                                <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
+                                             </div> -->
+                                             <div class="card-body-bottom removeBefore">
+                                                <h3 class="card-body-bottom-title ">“<?= $online_camp['title'] ?>”</h3>
+                                                <p class="card-body-bottom-text"><?= $online_camp['description'] ?></p>
+                                             </div>
+                                             <div class="card-btnWrap">
+                                                <!-- <a class="btn borderBtn" href="Volunteer-Requests.html">View volunteer</a> -->
+                                                <a class="btn btnbg" href="Volunteer-Requests-Edit.html">Edit Request</a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                              <?php
+                                 }
+                              }
+                              ?>
+
+                           </div>
                         </div>
                      </div>
                      <!--  -->
@@ -131,13 +242,17 @@
                                           <td><?= $ovr['name']; ?></td>
                                           <td><?= $ovr['title']; ?></td>
                                           <td><?= $ovr['address_line_one'] ?>, <?= $ovr['city'] ?>, <?= $ovr['country'] ?></td>
-                                          <td><strong><?php echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Approved'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>"); ?></strong></td>
+                                          <td><strong><?php echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Accepted'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>"); ?></strong></td>
                                           <td>
-                                             <div class="btnWrap">
-                                                <a class="btn btnbg" href="Volunteer-Requests-Onsite.html" role="button">Accept</a>
-                                                <a class="btn borderBtn" href="#" role="button">Reject</a>
-                                                <a class="btn borderBtn" href="#" role="button">Shortlist</a>
-                                             </div>
+                                             <?php if ($ovr['status'] == 0) { ?>
+
+                                                <div class="btnWrap">
+                                                   <a class="btn btnbg" href="<?php echo site_url('Campaign/approve_vol/' . $ovr['id']) ?>" role="button">Accept</a>
+                                                   <a class="btn borderBtn" href="<?php echo site_url('Campaign/reject_vol/' . $ovr['id']) ?>" role="button">Reject</a>
+                                                   <a class="btn borderBtn" href="<?php echo site_url('Campaign/shortlist_vol/' . $ovr['id']) ?>" role="button">Shortlist</a>
+                                                </div>
+                                             <?php
+                                             } ?>
                                           </td>
                                        </tr>
                                  <?php
@@ -148,7 +263,7 @@
                            </table>
                         </div>
                         <!--  -->
-                     
+
                         <!-- NGO - Dashboard - Onsite Start -->
                         <div class="my-4">
                            <hr>
@@ -159,147 +274,99 @@
                            <div class="col-md-4">
                               <ul class="nav nav-tabs">
                                  <li class="nav-item" role="presentation">
-                                    <a class="nav-link active">Published</a>
+                                    <button class="nav-link active" id="Onsite-publish-tab" data-bs-toggle="tab" data-bs-target="#Onsite-publish" type="button" role="tab" aria-controls="Online" aria-selected="true">Published</button>
+
                                  </li>
                                  <li class="nav-item" role="presentation">
-                                    <a class="nav-link">In Verification</a>
-                                 </li>
-                              </ul>
-                           </div>
-                           <div class="col-md-8">
-                              <ul class="nav nav-pills justify-content-end">
-                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="#"> <img src="assets/images/calendar.svg" width="14" height="14"> Date</a>
+                                    <button class="nav-link" id="Onsite-verify-tab" data-bs-toggle="tab" data-bs-target="#Onsite-verify" type="button" role="tab" aria-controls="Online" aria-selected="true">In Verification</button>
                                  </li>
                               </ul>
                            </div>
                         </div>
 
                         <!-- Filter Div Ends-->
+                        <div class="tab-content" id="myTabContent">
 
-                        <div class="row cardWrap">
-                           <!--  -->
-                           <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                              <div class="card largeImg">
-                                 <div class="card-img-wrap">
+                           <div class="row cardWrap tab-pane fade show active" id="Onsite-publish" role="tabpanel" aria-labelledby="Onsite-publish-tab">
+                              <?php
+                              if (!empty($camp_onsite_published)) {
+                                 foreach ($camp_onsite_published as $online_camp) {
+                              ?>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                       <div class="card largeImg">
+                                          <div class="card-img-wrap">
 
-                                    <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
-                                    <div class="card-img-tagIcon justify-content-end">
+                                             <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
+                                             <div class="card-img-tagIcon justify-content-end">
 
-                                       <div class="card-img-views ">
-                                          <span>Views</span>
-                                          <h4>3,288</h4>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="card-body">
-                                    <!-- <div class="card-body-top">
+                                                <div class="card-img-views ">
+                                                   <!-- <span>Views</span> -->
+                                                   <!-- <h4>3,288</h4> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="card-body">
+                                             <!-- <div class="card-body-top">
                                                 <h4 class="card-title">Name of NGO</h4>
                                                 <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
                                              </div> -->
-                                    <div class="card-body-bottom removeBefore">
-                                       <h3 class="card-body-bottom-title ">“On-site Chef Required”</h3>
-                                       <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                                    </div>
-                                    <div class="card-btnWrap">
-                                       <a class="btn borderBtn" href="Volunteer-Requests.html">View volunteer</a>
-                                       <a class="btn btnbg" href="Volunteer-Requests-Edit.html">Edit Request</a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <!--  -->
-                           <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                              <div class="card largeImg">
-                                 <div class="card-img-wrap">
-
-                                    <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
-                                    <div class="card-img-tagIcon justify-content-end">
-
-                                       <div class="card-img-views ">
-                                          <span>Views</span>
-                                          <h4>3,288</h4>
+                                             <div class="card-body-bottom removeBefore">
+                                                <h3 class="card-body-bottom-title ">“<?= $online_camp['title'] ?>”</h3>
+                                                <p class="card-body-bottom-text"><?= $online_camp['description'] ?></p>
+                                             </div>
+                                             <div class="card-btnWrap">
+                                                <a class="btn borderBtn" href="<?php echo site_url('Campaign/view_vol_list/' . $online_camp['camp_id']) ?>">View volunteer</a>
+                                                <!-- <a class="btn btnbg" href="Volunteer-Requests-Edit.html">Edit Request</a> -->
+                                             </div>
+                                          </div>
                                        </div>
                                     </div>
-                                 </div>
-                                 <div class="card-body">
-                                    <!-- <div class="card-body-top">
+                              <?php
+                                 }
+                              }
+                              ?>
+                           </div>
+                           <div class="row cardWrap tab-pane fade" id="Onsite-verify" role="tabpanel" aria-labelledby="Onsite-verify-tab">
+                              <?php
+                              if (!empty($camp_onsite_verify)) {
+                                 foreach ($camp_onsite_verify as $online_camp) {
+                              ?>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                       <div class="card largeImg">
+                                          <div class="card-img-wrap">
+
+                                             <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
+                                             <div class="card-img-tagIcon justify-content-end">
+
+                                                <div class="card-img-views ">
+                                                   <!-- <span>Views</span> -->
+                                                   <!-- <h4>3,288</h4> -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="card-body">
+                                             <!-- <div class="card-body-top">
                                                 <h4 class="card-title">Name of NGO</h4>
                                                 <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> Vukovar, Croatia, Europe</p>
                                              </div> -->
-                                    <div class="card-body-bottom removeBefore">
-                                       <h3 class="card-body-bottom-title ">“On-site Chef Required”</h3>
-                                       <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                                    </div>
-                                    <div class="card-btnWrap">
-                                       <a class="btn borderBtn" href="Volunteer-Requests.html">View volunteer</a>
-                                       <a class="btn btnbg" href="Volunteer-Requests-Edit.html">Edit Request</a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <!--  -->
-                           <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                              <div class="card largeImg">
-                                 <div class="card-img-wrap">
-
-                                    <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
-                                    <div class="card-img-tagIcon justify-content-end">
-
-                                       <div class="card-img-views ">
-                                          <span>Views</span>
-                                          <h4>3,288</h4>
+                                             <div class="card-body-bottom removeBefore">
+                                                <h3 class="card-body-bottom-title ">“<?= $online_camp['title'] ?>”</h3>
+                                                <p class="card-body-bottom-text"><?= $online_camp['description'] ?></p>
+                                             </div>
+                                             <div class="card-btnWrap">
+                                                <!-- <a class="btn borderBtn" href="Volunteer-Requests.html">View volunteer</a> -->
+                                                <a class="btn btnbg" href="Volunteer-Requests-Edit.html">Edit Request</a>
+                                             </div>
+                                          </div>
                                        </div>
                                     </div>
-                                 </div>
-                                 <div class="card-body">
-                                    <div class="card-body-bottom removeBefore">
-                                       <h3 class="card-body-bottom-title ">“On-site Chef Required”</h3>
-                                       <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                                    </div>
-                                    <div class="card-btnWrap">
-                                       <a class="btn borderBtn" href="Volunteer-Requests.html">View volunteer</a>
-                                       <a class="btn btnbg" href="Volunteer-Requests-Edit.html">Edit Request</a>
-                                    </div>
-                                 </div>
-                              </div>
+                              <?php
+                                 }
+                              }
+                              ?>
                            </div>
-                           <!--  -->
-
-
-                           <!--  -->
-                           <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 opacity-50">
-                              <div class="card largeImg">
-                                 <div class="card-img-wrap">
-
-                                    <img src="assets/images/campaigns.jpg" class="card-img-top" alt="..." width="377" height="275">
-                                    <div class="card-img-tagIcon justify-content-end">
-
-                                       <div class="card-img-views ">
-                                          <span>Views</span>
-                                          <h4>3,288</h4>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="card-body">
-                                    <div class="card-body-bottom removeBefore">
-                                       <h3 class="card-body-bottom-title ">“On-site Chef Required”</h3>
-                                       <p class="card-body-bottom-text">Over 800 vulnerable child brides we rescue and their children need your help this Christmas please . Please give a gift to show them you care.</p>
-                                    </div>
-                                    <div class="card-btnWrap">
-                                       <a class="btn borderBtn" href="Volunteer-Requests.html">View volunteer</a>
-                                       <a class="btn btnbg" href="Volunteer-Requests-Edit.html">Edit Request</a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <!--  -->
-
-
 
                         </div>
-
-
                         <!-- NGO - Dashboard - Onsite END -->
 
                      </div>
@@ -549,10 +616,8 @@
 <!-- Modal END -->
 <?php $this->load->view('include/signup-footer') ?>
 <script>
-    $(function () {
+   $(function() {
       // $("#online_vol_app").DataTable();   
       // $("#onsite_vol_app").DataTable();   
-    });
-
-
+   });
 </script>

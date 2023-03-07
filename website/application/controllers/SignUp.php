@@ -6,6 +6,7 @@ class SignUp extends CI_Controller {
 	function __construct(){
 		parent::__construct();
         if($this->session->userdata('user_info')){
+            die('hereeeee');
             redirect(site_url('dashboard-ngo'));               
         }
 

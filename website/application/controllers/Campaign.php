@@ -24,7 +24,7 @@ class Campaign extends MY_Controller {
 
     public function create_campaign() {
         // echo '<pre>';print_r($_FILES);
-        // print_r($this->input->post('data'));
+        // print_r($this->input->post('data'));die;
 
         $config = array(
         
@@ -87,7 +87,11 @@ class Campaign extends MY_Controller {
             }
             $data['cv_url'] = $this->upload->file_name;
             $data['user_id'] = $this->user_id;
-            $data['campaign_type'] = 1;
+            if ($data['camp_type'] == 'online') {
+                $data['campaign_type'] = 1;
+            } else {
+                $data['campaign_type'] = 2;
+            }
             $camp_ques = $data['question_name'];
             unset($data['question_name']);
             $update = $this->CRUD->Insert('tbl_campaigns', $data); 
@@ -201,6 +205,47 @@ class Campaign extends MY_Controller {
             echo json_encode($array);
             exit;
         }
+    }
+
+    public function approve_vol() {
+        $id = $this->uri->segment(3);
+        $this->db->where('id', $id);
+        $this->db->update('tbl_vol_application', array('status' => 1));
+        $this->session->set_flashdata('Message', 'Volunteer approved successfully!');
+        redirect(site_url('dashboard-ngo'));
+    }
+
+    public function reject_vol() {
+        $id = $this->uri->segment(3);
+        $this->db->where('id', $id);
+        $this->db->update('tbl_vol_application', array('status' => 2));
+        $this->session->set_flashdata('Message', 'Volunteer rejected successfully!');
+        redirect(site_url('dashboard-ngo'));
+    }
+
+    public function shortlist_vol() {
+        $id = $this->uri->segment(3);
+        $this->db->where('id', $id);
+        $this->db->update('tbl_vol_application', array('status' => 3));
+        $this->session->set_flashdata('Message', 'Volunteer shortlisted successfully!');
+        redirect(site_url('dashboard-ngo'));
+    }
+
+    public function view_vol_list() {
+        $camp_id = $this->uri->segment(3);
+        $this->data['vol_list'] = $this->Volunteer_request->get_vol_list($camp_id);
+        $this->data['camp_data'] = $this->Campaign_Model->camp_details($camp_id);
+        // print_r($this->data['camp_data']);die;
+        // $res = $this->db->select('*')->where('camp_id', $camp_id)->get('tbl_vol_application')->result_array();
+        $this->load->view('ngo/view_vol_list',$this->data);
+    }
+
+    public function withdraw_vol() {
+        $id = $this->uri->segment(3);
+        $this->db->where('id', $id);
+        $this->db->update('tbl_vol_application', array('status' => 3));
+        $this->session->set_flashdata('Message', 'Request withdrawn successfully!');
+        redirect(site_url('dashboard-ngo'));
     }
 
 }

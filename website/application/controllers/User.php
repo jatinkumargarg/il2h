@@ -178,14 +178,20 @@ class User extends MY_Controller {
             $this->load->view('login'); }
         else {
             $res = $this->db->select('*')->where('user_type', 3)->get('tbl_users')->result_array();
-            $this->data['camp_online_all'] = $this->Campaign->get_all_campaigns(1);
-            $this->data['camp_onsite_all'] = $this->Campaign->get_all_campaigns(2);
+            $this->data['camp_online_published'] = $this->Campaign->get_all_campaigns(1, 1);
+            $this->data['camp_onsite_published'] = $this->Campaign->get_all_campaigns(2, 1);
+            $this->data['camp_online_verify'] = $this->Campaign->get_all_campaigns(1, 0);
+            $this->data['camp_onsite_verify'] = $this->Campaign->get_all_campaigns(2, 0);
             // print_r($res);die;
             $this->data['page_title']  = 'Dashboard';
             if($this->session->userdata['user_info']['user_type'] == 3){
                 $this->data['online_vol_request'] = $this->Volunteer_request->get_vol_request($this->user_id, 1);
+                $this->data['onsite_vol_request'] = $this->Volunteer_request->get_vol_request($this->user_id, 2);
                 $this->load->view('dashboard_ngo',$this->data);
             } else {
+                $this->data['camp_online_all'] = $this->Campaign->get_all_camps_for_val(1);
+                // echo '<pre>';print_r($this->data['camp_online_all']);die;
+                $this->data['camp_onsite_all'] = $this->Campaign->get_all_camps_for_val(2);
                 $this->load->view('dashboard_vol',$this->data);
             }
 
