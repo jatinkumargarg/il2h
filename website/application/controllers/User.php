@@ -205,5 +205,14 @@ class User extends MY_Controller {
         redirect(site_url());
     }
 
-
+    public function user_profile(){		
+       
+        $res= $this->db->query("SELECT id FROM tbl_users WHERE id='".$this->user_id."'")->row_array();
+      
+        if(!$res){
+            redirect(site_url());
+        }
+		$this->data['page_title']  = 'User Profile';
+		$this->load->view('user_profile',$this->data);
+	}
 }

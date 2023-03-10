@@ -67,12 +67,12 @@
                       <li class="nav-item">
                         <a class="nav-link" href="#"> <img src="assets/images/ESTIMATEDTIME.svg" width="14" height="14"> Estimated Time</a>
                       </li>
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
                         <a class="nav-link" href="#"> <img src="assets/images/accommodationDark.svg" width="14" height="14"> Accommodation</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#"> <img src="assets/images/mealsDark.svg" width="14" height="14"> Meals</a>
-                      </li>
+                      </li> -->
                       <li class="nav-item">
                         <a class="nav-link" href="#"> <img src="assets/images/mapCard.svg" width="14" height="14"> Location</a>
                       </li>
@@ -96,7 +96,7 @@
                               <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
                               <?php if ($value['status'] == 1) { ?>
                                 <div class="cardActivated ml-auto">Accepted</div>
-                              <?php } else if ($value['status'] == 0) { ?>
+                              <?php } else if ($value['status'] == 0 || $value['status'] == 4) { ?>
                                 <div class="inQueue ml-auto">In Queue</div>
                               <?php
                               } else if ($value['status'] == 2) { ?>
@@ -198,7 +198,7 @@
                     // echo "<pre>";print_r($camp_online_all);die;
                     foreach ($camp_online_all as $key => $value) {
                       // echo $value['status'];continue;
-                      if (isset($value['status']) && $value['status'] == 0) {
+                      if (isset($value['status']) && ($value['status'] == 0 || $value['status'] == 4)) {
                     ?>
                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
                           <div class="card largeImg">
@@ -254,13 +254,14 @@
                   <div class="col-md-4">
                     <ul class="nav nav-tabs">
                       <li class="nav-item" role="presentation">
-                        <a class="nav-link active">All</a>
+                        <button class="nav-link active" id="Onsite-publish-tab" data-bs-toggle="tab" data-bs-target="#Onsite-all" type="button" role="tab" aria-controls="Onsite" aria-selected="true">All</button>
+
                       </li>
                       <li class="nav-item" role="presentation">
-                        <a class="nav-link">Accepted</a>
+                        <button class="nav-link" id="Onsite-publish-tab" data-bs-toggle="tab" data-bs-target="#Onsite-accepted" type="button" role="tab" aria-controls="Onsite" aria-selected="true">Accepted</button>
                       </li>
                       <li class="nav-item" role="presentation">
-                        <a class="nav-link">In Queue</a>
+                        <button class="nav-link" id="Onsite-publish-tab" data-bs-toggle="tab" data-bs-target="#Onsite-queue" type="button" role="tab" aria-controls="Onsite" aria-selected="true">In Queue</button>
                       </li>
                     </ul>
                   </div>
@@ -286,68 +287,164 @@
                 </div>
 
                 <!-- Filter Div Ends-->
-                <div class="row cardWrap">
-                  <!--  -->
-                  <?php
-                  // echo "<pre>";print_r($camp_online_all);die;
-                  foreach ($camp_onsite_all as $key => $value) {
+                <div class="tab-content" id="myTabContent">
+                  <div class="row cardWrap tab-pane fade show active" id="Onsite-all" role="tabpanel" aria-labelledby="Onsite-publish-tab">
+                    <!--  -->
+                    <?php
+                    // echo "<pre>";print_r($camp_online_all);die;
+                    foreach ($camp_onsite_all as $key => $value) {
 
-                  ?>
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                      <div class="card largeImg">
-                        <div class="card-img-wrap">
-                          <div class="card-img-tag-top">
-                            <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
-
-                            <!-- <div class="cardActivated ml-auto">Accepted</div> -->
-                          </div>
-                          <img src="uploads/<?= $value['banner_image'] ?>" class="card-img-top" alt="..." width="377" height="275">
-                          <div class="card-img-tagIcon">
-                            <div class="card-img-tagLeft">
-                              <?php if ($value['accomodation'] == 1) { ?>
-                                <div class="card-img-tag">
-                                  <span class="tagIcon">
-                                    <img src="assets/images/accommodation.svg" width="18" height="16">
-                                  </span>
-                                  <span class="tagText">Accomodation</span>
-                                </div>
-                              <?php } ?>
-                              <?php if ($value['meals'] == 1) { ?>
-                                <div class="card-img-tag">
-                                  <span class="tagIcon">
-                                    <img src="assets/images/meals.svg" width="16" height="16">
-                                  </span>
-                                  <span class="tagText">Meals</span>
-                                </div>
-                              <?php } ?>
+                    ?>
+                      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                        <div class="card largeImg">
+                          <div class="card-img-wrap">
+                            <div class="card-img-tag-top">
+                              <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
+                              <?php if ($value['status'] == 1) { ?>
+                                <div class="cardActivated ml-auto">Accepted</div>
+                              <?php } else if ($value['status'] == 0 || $value['status'] == 4) { ?>
+                                <div class="inQueue ml-auto">In Queue</div>
+                              <?php
+                              } else if ($value['status'] == 2) { ?>
+                                <div class="inQueue ml-auto" style="background:#ff1f1f;">Rejected</div>
+                              <?php
+                              } ?>
                             </div>
-                            <div class="card-img-views">
+                            <img src="uploads/<?= $value['banner_image'] ?>" class="card-img-top" alt="..." width="377" height="275">
+                            <div class="card-img-tagIcon">
+                              <div class="card-img-tagLeft">
+                                <div class="card-img-tag">
+                                  <span class="tagIcon">
+                                    <img src="assets/images/watch.svg" width="18" height="16">
+                                  </span>
+                                  <span class="tagText">Estimated time: <?= $value['estimated_hour'] ?> Hour(s)</span>
+                                </div>
+                                <!-- <div class="card-img-tag">
+                                <span class="tagIcon">
+                                  <img src="assets/images/meals.svg" width="16" height="16">
+                                </span>
+                                <span class="tagText">Meals</span>
+                              </div> -->
+                              </div>
+                              <!-- <div class="card-img-views">
                               <span>Views</span>
                               <h4>3,288</h4>
+                            </div> -->
                             </div>
                           </div>
-                        </div>
-                        <div class="card-body">
-                          <div class="card-body-top">
-                            <h4 class="card-title"><?= $value['ngo_name'] ?></h4>
-                            <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> <?= $value['city'] ?>, <?= $value['country'] ?></p>
-                          </div>
-                          <div class="card-body-bottom">
-                            <h5 class="card-body-bo ttom-title">“<?= $value['title'] ?>”</h5>
-                            <p class="card-body-bottom-text"><?= $value['description'] ?></p>
-                          </div>
-                          <div class="card-btnWrap">
-                            <a class="btn borderBtn" href="donateWinTravel.html">Details</a>
-                            <a class="btn btnbg" href="volunteerOnlineDetail.html">Withdraw</a>
+                          <div class="card-body">
+                            <div class="card-body-top">
+                              <h4 class="card-title"><?= $value['ngo_name'] ?></h4>
+                              <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> <?= $value['city'] ?>, <?= $value['country'] ?></p>
+                            </div>
+                            <div class="card-body-bottom">
+                              <h5 class="card-body-bo ttom-title">“<?= $value['title'] ?>”</h5>
+                              <p class="card-body-bottom-text"><?= $value['description'] ?></p>
+                            </div>
+                            <div class="card-btnWrap">
+                              <a class="btn borderBtn" href="<?php echo site_url('camp-details/' . $value['camp_id']) ?>">Details</a>
+                              <?php if (isset($value['status']) && $value['status'] == 0) { ?><a class="btn btnbg" href="<?php echo site_url('Campaign/withdraw_vol/' . $value['app_id']) ?>">Withdraw</a><?php } ?>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <!--  -->
+                      <!--  -->
 
-                  <?php
-                  }
-                  ?>
+                    <?php
+                    }
+                    ?>
+                  </div>
+                  <div class="row cardWrap tab-pane fade show" id="Onsite-accepted" role="tabpanel" aria-labelledby="Onsite-publish-tab">
+                    <?php
+                    foreach ($camp_onsite_all as $key => $value) {
+                      if (isset($value['status']) && $value['status'] == 1) {
+                    ?>
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                          <div class="card largeImg">
+                            <div class="card-img-wrap">
+                              <div class="card-img-tag-top">
+                                <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
+                                <div class="cardActivated ml-auto">Accepted</div>
+                              </div>
+                              <img src="uploads/<?= $value['banner_image'] ?>" class="card-img-top" alt="..." width="377" height="275">
+                              <div class="card-img-tagIcon">
+                                <div class="card-img-tagLeft">
+                                  <div class="card-img-tag">
+                                    <span class="tagIcon">
+                                      <img src="assets/images/watch.svg" width="18" height="16">
+                                    </span>
+                                    <span class="tagText">Estimated time: <?= $value['estimated_hour'] ?> Hour(s)</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-body">
+                              <div class="card-body-top">
+                                <h4 class="card-title"><?= $value['ngo_name'] ?></h4>
+                                <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> <?= $value['city'] ?>, <?= $value['country'] ?></p>
+                              </div>
+                              <div class="card-body-bottom">
+                                <h5 class="card-body-bo ttom-title">“<?= $value['title'] ?>”</h5>
+                                <p class="card-body-bottom-text"><?= $value['description'] ?></p>
+                              </div>
+                              <div class="card-btnWrap">
+                                <a class="btn borderBtn" href="<?php echo site_url('camp-details/' . $value['camp_id']) ?>">Details</a>
+                                <!-- <a class="btn btnbg" href="volunteerOnlineDetail.html">Withdraw</a> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    <?php
+                      }
+                    }
+                    ?>
+                  </div>
+                  <div class="row cardWrap tab-pane fade show" id="Onsite-queue" role="tabpanel" aria-labelledby="Onsite-publish-tab">
+                    <?php
+                    foreach ($camp_onsite_all as $key => $value) {
+                      // echo $value['status'];continue;
+                      if (isset($value['status']) && ($value['status'] == 0 || $value['status'] == 4)) {
+                    ?>
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                          <div class="card largeImg">
+                            <div class="card-img-wrap">
+                              <div class="card-img-tag-top">
+                                <span><img src="assets/images/breifcaseLight.svg" width="14" height="14"> On-site</span>
+                                <div class="inQueue ml-auto">In Queue</div>
+                              </div>
+                              <img src="uploads/<?= $value['banner_image'] ?>" class="card-img-top" alt="..." width="377" height="275">
+                              <div class="card-img-tagIcon">
+                                <div class="card-img-tagLeft">
+                                  <div class="card-img-tag">
+                                    <span class="tagIcon">
+                                      <img src="assets/images/watch.svg" width="18" height="16">
+                                    </span>
+                                    <span class="tagText">Estimated time: <?= $value['estimated_hour'] ?> Hour(s)</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-body">
+                              <div class="card-body-top">
+                                <h4 class="card-title"><?= $value['ngo_name'] ?></h4>
+                                <p class="card-text"><img src="assets/images/mapCard.svg" width="13" height="13"> <?= $value['city'] ?>, <?= $value['country'] ?></p>
+                              </div>
+                              <div class="card-body-bottom">
+                                <h5 class="card-body-bo ttom-title">“<?= $value['title'] ?>”</h5>
+                                <p class="card-body-bottom-text"><?= $value['description'] ?></p>
+                              </div>
+                              <div class="card-btnWrap">
+                                <a class="btn borderBtn" href="<?php echo site_url('camp-details/' . $value['camp_id']) ?>">Details</a>
+                                <a class="btn btnbg" href="<?php echo site_url('Campaign/withdraw_vol/' . $value['app_id']) ?>">Withdraw</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    <?php
+                      }
+                    }
+                    ?>
+                  </div>
                 </div>
 
 

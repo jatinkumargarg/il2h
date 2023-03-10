@@ -47,7 +47,7 @@
                               </div>
                            </div>
                            <div class="col-md-3 text-end">
-                              <a href="#" class="arrowBtn">Shortlisted Candidates
+                              <a href="<?php echo site_url('Campaign/shortlisted_vol_list') ?>" class="arrowBtn">Shortlisted Candidates
                                  <span class="a-right ml-3"></span>
                               </a>
                            </div>
@@ -74,7 +74,30 @@
                                           <td><?= $ovr['name']; ?></td>
                                           <td><?= $ovr['title']; ?></td>
                                           <td><?= $ovr['address_line_one'] ?>, <?= $ovr['city'] ?>, <?= $ovr['country'] ?></td>
-                                          <td><strong><?php echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Approved'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>"); ?></strong></td>
+                                          <td><strong><?php 
+                                          // echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Approved'  . "</p>" : (($ovr['status'] == '2') ? "<p style='color:red;'>" . 'Rejected'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>")); 
+                                          switch ($ovr['status']) {
+                                             case '0':
+                                                echo "<p style='color:blue;'>" . 'Pending' . "</p>";
+                                                break;
+                                             case 1:
+                                                echo "<p style='color:green;'>" . 'Approved' . "</p>";
+                                                break;
+                                             case 2:
+                                                echo "<p style='color:red;'>" . 'Rejected' . "</p>";
+                                                break;
+                                             case 3:
+                                                echo "<p style='color:red;'>" . 'Withraw' . "</p>";
+                                                break;
+                                             case 4:
+                                                echo "<p style='color:blue;'>" . 'Shortlisted' . "</p>";
+                                                break;
+                                             default:
+                                                # code...
+                                                break;
+                                          }
+                                          
+                                          ?></strong></td>
                                           <td>
                                              <?php if ($ovr['status'] == 0) { ?>
 
@@ -214,7 +237,7 @@
                                  </div>
                               </div>
                               <div class="col-md-3 text-end">
-                                 <a href="#" class="arrowBtn">Shortlisted Candidates
+                                 <a href="<?php echo site_url('Campaign/shortlisted_vol_list') ?>" class="arrowBtn">Shortlisted Candidates
                                     <span class="a-right ml-3"></span>
                                  </a>
                               </div>
@@ -242,7 +265,29 @@
                                           <td><?= $ovr['name']; ?></td>
                                           <td><?= $ovr['title']; ?></td>
                                           <td><?= $ovr['address_line_one'] ?>, <?= $ovr['city'] ?>, <?= $ovr['country'] ?></td>
-                                          <td><strong><?php echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Accepted'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>"); ?></strong></td>
+                                          <td><strong><?php 
+                                          // echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Accepted'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>"); 
+                                          switch ($ovr['status']) {
+                                             case '0':
+                                                echo "<p style='color:blue;'>" . 'Pending' . "</p>";
+                                                break;
+                                             case 1:
+                                                echo "<p style='color:green;'>" . 'Approved' . "</p>";
+                                                break;
+                                             case 2:
+                                                echo "<p style='color:red;'>" . 'Rejected' . "</p>";
+                                                break;
+                                             case 3:
+                                                echo "<p style='color:red;'>" . 'Withraw' . "</p>";
+                                                break;
+                                             case 4:
+                                                echo "<p style='color:blue;'>" . 'Shortlisted' . "</p>";
+                                                break;
+                                             default:
+                                                # code...
+                                                break;
+                                          }
+                                          ?></strong></td>
                                           <td>
                                              <?php if ($ovr['status'] == 0) { ?>
 

@@ -137,19 +137,21 @@ class Campaign extends MY_Controller {
         if ($application_exist > 0) {
             $data['app_exist'] = 1;
         }
-        $this->load->view('volunteer_online_details',$data);  
+        $this->load->view('volunteer_online_details',$data);
 	}
 
     function create_volunteer_request($camp_id) {
         $data['value'] = $this->Campaign_Model->camp_details($camp_id);
         $data['camp_questions'] = $this->Campaign_ques->camp_ques($camp_id);
-        // echo '<pre>';print_r($data);die;
-        $this->load->view('volunteer_online_request_form',$data);  
+        if ($data['value']['campaign_type'] == 1) {
+            $this->load->view('volunteer_online_request_form',$data);
+        } else {
+            $this->load->view('volunteer_onsite_request_form',$data);
+        }
     }
 
     public function vol_submit_request() {
         $config = array(
-        
             array(
                 'field' => 'data[description]',
                 'label' => 'description',
@@ -182,7 +184,7 @@ class Campaign extends MY_Controller {
             $data['vol_cv'] = $this->upload->file_name;
             $data['status'] = 0;
             $data['user_id'] = $this->user_id;
-            $data['camp_ques'] = json_encode($data['ques']);
+            $data['camp_ques'] = json_encode($this->input->post('ques'));
             $update = $this->CRUD->Insert('tbl_vol_application', $data); 
             if($update){
                 $this->session->set_flashdata('Message','Request sent successfully!!');
@@ -226,7 +228,7 @@ class Campaign extends MY_Controller {
     public function shortlist_vol() {
         $id = $this->uri->segment(3);
         $this->db->where('id', $id);
-        $this->db->update('tbl_vol_application', array('status' => 3));
+        $this->db->update('tbl_vol_application', array('status' => 4));
         $this->session->set_flashdata('Message', 'Volunteer shortlisted successfully!');
         redirect(site_url('dashboard-ngo'));
     }
@@ -246,6 +248,119 @@ class Campaign extends MY_Controller {
         $this->db->update('tbl_vol_application', array('status' => 3));
         $this->session->set_flashdata('Message', 'Request withdrawn successfully!');
         redirect(site_url('dashboard-ngo'));
+    }
+
+    public function vol_onsite_submit_request() {
+        $config = array(
+            array(
+                'field' => 'data[arrival_date]',
+                'label' => 'arrival_date',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[dept_date]',
+                'label' => 'dept_date',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[stay_days]',
+                'label' => 'stay_days',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[no_of_volunteer]',
+                'label' => 'no_of_volunteer',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[full_name]',
+                'label' => 'full_name',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[gender]',
+                'label' => 'gender',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[email]',
+                'label' => 'email',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[mobile_number]',
+                'label' => 'mobile_number',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[state]',
+                'label' => 'state',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[home_address]',
+                'label' => 'home_address',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[education]',
+                'label' => 'education',
+                'rules' => 'trim|required',						
+            ),
+            array(
+                'field' => 'data[job]',
+                'label' => 'job',
+                'rules' => 'trim|required',						
+            )
+        );
+        $this->form_validation->set_message('is_unique', 'The %s is already taken');
+        $this->form_validation->set_rules($config);	
+        if($this->form_validation->run()){    
+            $data =   $this->security->xss_clean($this->input->post('data')) ;
+            // echo '<pre>';print_r($this->input->post());die;
+            $data['status'] = 0;
+            $data['user_id'] = $this->user_id;
+            $data['camp_ques'] = json_encode($this->input->post('ques'));
+            $update = $this->CRUD->Insert('tbl_vol_application', $data); 
+            if($update){
+                $this->session->set_flashdata('Message','Request sent successfully!!');
+                redirect(site_url('dashboard-ngo'));   
+            }else{
+                $array = array(
+                    'error'   => true,
+                    'error-div' => '<p>Error!, Something went wrong. Please try after sometime.'
+                );               
+                echo json_encode($array);
+                exit;  
+            }
+                
+        } else {
+            $array = array(
+                'error'   => true,
+                'arrival_date' => form_error('data[arrival_date]'),
+                'dept_date' => form_error('data[dept_date]'),
+                'stay_days' => form_error('data[stay_days]'),
+                'no_of_volunteer' => form_error('data[no_of_volunteer]'),
+                'full_name' => form_error('data[full_name]'),
+                'gender' => form_error('data[gender]'),
+                'email' => form_error('data[email]'),
+                'mobile_number' => form_error('data[mobile_number]'),
+                'state' => form_error('data[state]'),
+                'home_address' => form_error('data[home_address]'),
+                'education' => form_error('data[education]'),
+                'job' => form_error('data[job]')
+            );
+            echo json_encode($array);
+            exit;
+        }
+    }
+
+    public function shortlisted_vol_list() {
+        $camp_id = $this->uri->segment(3);
+        $this->data['vol_list'] = $this->Volunteer_request->get_vol_list(0, true);
+        // print_r($this->data['camp_data']);die;
+        // $res = $this->db->select('*')->where('camp_id', $camp_id)->get('tbl_vol_application')->result_array();
+        $this->load->view('ngo/shortlisted_vol_list',$this->data);
     }
 
 }

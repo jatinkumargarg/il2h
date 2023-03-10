@@ -25,6 +25,7 @@ $route['login_submit'] ='SignUp/login_submit';
 
 $route['404_override'] = 'Homepage/override_404';
 $route['translate_uri_dashes'] = FALSE;
+$route['search-campaign'] = 'Homepage/searchCampaignView';
 
 
 require_once (FCPATH.ADMINPATH.'/application/cache/routes.php');

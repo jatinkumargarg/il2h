@@ -20,7 +20,7 @@
                      <div class="row">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                            <?= form_open_multipart('Campaign/vol_submit_request', array('id' => 'contactForm', 'class' => 'stepFormWrapper full')); ?>
-                           <input type="hidden" name="data[camp_id]" value="<?=$value['camp_id']?>">
+                           <input type="hidden" name="data[camp_id]" value="<?= $value['camp_id'] ?>">
                            <div class="stepFormWrap">
                               <div class="row">
                                  <div class="col-md-12">
@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                        <label for="pin" class="form-label">Please describe your professional experience</label>
                                        <input type="text" class="form-control" id="pin" placeholder="We would love to know how your experience relates to this task." aria-describedby="pin" required name="data[description]">
-                                       <div class="invalid-tooltip"> Please choose a username. </div>
+                                       <div class="invalid-tooltip"> Please fill experience. </div>
                                     </div>
                                  </div>
                                  <div class="col-md-6">
@@ -52,7 +52,7 @@
 
                                           <!--  -->
                                           <!-- <label for="formFile" class="form-label"><img src="<?php echo site_url('assets/images/VOS.svg'); ?>" width="22" height="22" /> Upload your CV here</label> -->
-                                          <input class="form-control" type="file" id="formFile" name ="vol_cv">
+                                          <input class="form-control" type="file" id="formFile" name="vol_cv">
                                           <!--  -->
                                        </div>
                                     </div>
@@ -64,7 +64,7 @@
                                     <div class="col-md-12">
                                        <div class="form-group">
                                           <label for="noKids" class="form-label"><strong>Question <?= $i ?>:</strong> <?= $q['question_name'] ?>?</label>
-                                          <input type="text" class="form-control" id="noKids" placeholder="" aria-describedby="Question 1" required name="ques[<?=$q['id']?>]">
+                                          <input type="text" class="form-control" id="noKids" placeholder="" aria-describedby="Question 1" required name="ques[<?= $q['id'] ?>]">
                                           <div class="invalid-tooltip"> Please choose a username. </div>
                                        </div>
                                     </div>

@@ -54,7 +54,29 @@
                                           <td><?= $ovr['name']; ?></td>
                                           <td><?= $ovr['title']; ?></td>
                                           <td><?= $ovr['address_line_one'] ?>, <?= $ovr['city'] ?>, <?= $ovr['country'] ?></td>
-                                          <td><strong><?php echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Approved'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>"); ?></strong></td>
+                                          <td><strong><?php 
+                                        //   echo ($ovr['status'] == '0') ? "<p style='color:blue;'>" . 'Pending' . "</p>" : (($ovr['status'] == '1') ? "<p style='color:green;'>" . 'Approved'  . "</p>" : "<p style='color:red;'>" . 'Rejected' . "</p>"); 
+                                          switch ($ovr['status']) {
+                                            case '0':
+                                               echo "<p style='color:blue;'>" . 'Pending' . "</p>";
+                                               break;
+                                            case 1:
+                                               echo "<p style='color:green;'>" . 'Approved' . "</p>";
+                                               break;
+                                            case 2:
+                                               echo "<p style='color:red;'>" . 'Rejected' . "</p>";
+                                               break;
+                                            case 3:
+                                               echo "<p style='color:red;'>" . 'Withraw' . "</p>";
+                                               break;
+                                            case 4:
+                                               echo "<p style='color:blue;'>" . 'Shortlisted' . "</p>";
+                                               break;
+                                            default:
+                                               # code...
+                                               break;
+                                         }
+                                          ?></strong></td>
                                        </tr>
                                  <?php
                                     }

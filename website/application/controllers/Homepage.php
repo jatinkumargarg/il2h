@@ -54,6 +54,10 @@ class Homepage extends CI_Controller {
 		}
 	}
 
+	public function searchCampaignView($quiz_id = '',$user_id=''){		
 	
+		$this->data['page_title']  = 'IL2H';
+		$this->load->view('searchCampaign',$this->data);
+	}
 
 }

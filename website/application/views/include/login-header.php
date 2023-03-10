@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>IL2H - <?php echo $page_title; ?></title>
+      <title>IL2H - <?php echo isset($page_title) ?? ''; ?></title>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
       <header id="header" class="  d-flex align-items-center">
          <div class="container-xl  d-flex align-items-center justify-content-between">
             <div class="logo">
-               <a href="index.html"><img src="<?php echo base_url('assets/images/il2hLogo.svg'); ?>" alt="IL2H" class="img-fluid" width="96" height="40"></a>
+               <a href="<?=site_url('dashboard-ngo');?>"><img src="<?php echo base_url('assets/images/il2hLogo.svg'); ?>" alt="IL2H" class="img-fluid" width="96" height="40"></a>
             </div>
             <nav id="navbar" class="navbar">
               <ul class="headerMenu">
@@ -60,7 +60,7 @@
                        </a>
                     </li>
                     <li>
-                       <a class="nav-link" href="volunteerOnline.html" >
+                       <a class="nav-link" href="<?=site_url('search-campaign');?>" >
                        Popular Campaigns
                        </a>
                     </li>
@@ -178,7 +178,7 @@
                        </a>
                        <ul class="navDropWrap">
                           <li>
-                             <a class="nav-link" href="#" >
+                             <a class="nav-link" href="<?=site_url('User/user_profile')?>" >
                                 Profile
                              </a>  
                           </li>

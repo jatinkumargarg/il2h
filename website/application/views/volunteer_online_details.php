@@ -42,7 +42,7 @@
                                             <strong>Ways to help</strong>
                                         </h2>
                                         <p><?=$value['description']?></p>
-                                        <ul class="nav nav-tabs volunteerDetailTab" id="myTab" role="tablist">
+                                        <!-- <ul class="nav nav-tabs volunteerDetailTab" id="myTab" role="tablist">
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><img src="assets/images/globe.svg" width="18" height="16"> VOLUNTEER ONLINE</button>
                                             </li>
@@ -251,7 +251,7 @@
 
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-lg-6 col-xl-4">

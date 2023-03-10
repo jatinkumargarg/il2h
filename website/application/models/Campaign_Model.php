@@ -34,7 +34,7 @@ class Campaign_Model extends MY_Model {
     }
 
     public function get_all_camps_for_val($camp_type, $vol_apply_status = false) {
-        $this->db->select('tbl_users.*, tbc.id as camp_id, tbc.campaign_type, tbc.title, tbc.description, tbc.mentor_id, tbc.mentor_contact_number,estimated_hour, accomodation,meals,start_date,end_date,facilities, fees, cv_url, banner_image, tva.status, tva.id as app_id');
+        $this->db->select('tbl_users.*, tbc.id as camp_id, tbc.campaign_type, tbc.title, tbc.description, tbc.mentor_id, tbc.mentor_contact_number,estimated_hour, accomodation,meals,start_date,end_date,facilities, fees, cv_url, banner_image, CASE WHEN tva.status is NULL THEN 5 ELSE tva.status END as status, tva.id as app_id', FALSE);
         $this->db->from('tbl_users');
         $this->db->join('tbl_campaigns as tbc', 'tbc.user_id = tbl_users.id', 'inner'); 
         $this->db->join('tbl_vol_application as tva', 'tva.camp_id = tbc.id', 'left'); 
