@@ -149,7 +149,7 @@ $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
-$config['csrf_exclude_uris'] = array('SignUp/signup_user','User/submit_basic_information', 'User/upload_doc_view', 'SignUp/login_view', 'SignUp/login_submit');
+$config['csrf_exclude_uris'] = array('SignUp/signup_user','User/submit_basic_information', 'User/upload_doc_view', 'SignUp/login_view', 'SignUp/login_submit', 'Signup/forgot_password','Signup/forgot_password_submit');
 
 
 $config['compress_output'] = FALSE;

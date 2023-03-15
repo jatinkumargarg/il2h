@@ -16,7 +16,7 @@
       <header id="header" class="  d-flex align-items-center">
          <div class="container-xl  d-flex align-items-center justify-content-between">
             <div class="logo">
-               <a href="index.html"><img src="<?php echo base_url('assets/images/il2hLogo.svg'); ?>" alt="IL2H" class="img-fluid" width="96" height="40"></a>
+               <a href="<?php echo base_url('');?>"><img src="<?php echo base_url('assets/images/il2hLogo.svg'); ?>" alt="IL2H" class="img-fluid" width="96" height="40"></a>
             </div>
             <nav id="navbar" class="navbar">
                <ul class="headerMenu">

@@ -39,69 +39,25 @@
                      </g>
                   </svg>
                </div>
-               <h3 class="loginHeading">Log In</h3>
+               <h3 class="loginHeading">Forgot Password</h3>
                <p class="loginSubHeading">By clicking Sign Up you agree to our <a href="#">Terms</a>. Learn how we process your data in our <a href="#">Privacy Policy</a> and <a href="#">Cookie policy</a>.</p>
                <!-- Login Buttons -->
-               <div class="loginBtnsWrap">
-                  <div class="row">
-                     <div class="col">
-                        <button type="button" class="loginBtn">
-                           <i class="loginBtnIcon">
-                              <img src="assets/images/FACEBOOK.svg">
-                           </i> 
-                           <span class="loginBtnText">Facebook</span>
-                        </button>
-                     </div>
-                     <div class="col">
-                        <button type="button" class="loginBtn">
-                           <i class="loginBtnIcon">
-                              <img src="assets/images/FACEBOOK.svg">
-                           </i> 
-                           <span class="loginBtnText">Google</span>
-                        </button>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col">
-                        <a type="button" href="phoneLogin.html" class="loginBtn">Phone Number</a>
-                     </div>
-                  </div>
-               </div>
-               <div class="divider">
-                  OR
-               </div>
-               <form action="SignUp/login_submit" method="POST">
+              <form  id="basic-details">
                   <div class="row">
                      <div class="col-md-12">
                         <div class="form-group">
-                           <input type="email" class="form-control" id="inputEmail" placeholder="Your Email" aria-describedby="inputEmail" required name="data[email]">
+                           <input type="email" class="form-control" id="contact_email" placeholder="Your Email" aria-describedby="inputEmail" required name="contact_email">
                            <div class="invalid-tooltip">
                               Please choose a username.
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <input type="password" class="form-control" placeholder="Password" id="inputPassword" required name="data[password]">
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <div class="d-flex mb-3 align-items-center">
-                              <div class="checkBoxWrap remember">
-                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                 <label class="form-check-label" for="flexCheckDefault">
-                                    Remember Me
-                                 </label>
-                              </div>
-                              <span class="ms-auto"><a href="<?=site_url('forgot_password');?>" class="forgotPass">Forgot Password</a></span> 
-                           </div>
-                        </div>
-                     </div>
+                     
                   </div>
                   <div class="col-md-12">
-                     <button type="submit" class="btn fullWidthBtn">LOGIN</button>
+                     <button type="submit" class="btn fullWidthBtn" onclick="submitBasicInformation()">SUBMIT</button>
                   </div>
+                  <div class="text-danger contact_email error-div"></div>
                   <?php if ($this->session->flashdata('incorrent_credentials')) { ?>
                     <div class="alert alert-danger">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -119,3 +75,52 @@
       </div>
    </main>
 <?php $this->load->view('include/signup-footer') ?>
+<script>
+   function submitBasicInformation(){
+      var contact_email = $("#contact_email").val().trim();
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      var error = 0;
+      if(contact_email == '' || regex.test(contact_email) == false){
+            error++;
+            $(".contact_email").html("Please enter a valid email address.");
+            $("#contact_email").addClass('is-invalid').removeClass('is-valid');
+      }else{
+            $(".contact_email").html("");
+            $("#contact_email").removeClass('is-invalid').addClass('is-valid');
+      }
+
+      if(error > 0){
+         $("#contact_email").focus();
+      }else{
+         /** Form Submit */
+         var form = $('#basic-details')[0];
+         var data = new FormData(form);
+         $.ajax({
+            url: '<?php echo site_url("Signup/forgot_password_submit"); ?>',
+            type: 'post',
+            data: data,
+            dataType: "JSON",
+            processData: false,
+            contentType: false,
+            cache: false,                   
+            success: function (response) { 
+                console.log(response);
+               if(response.error){
+                     $.each(response, function(key, value) {
+                        if(key != 'error'){
+                           $("." + key).html(value);
+                           $("#" + key ).addClass('is-invalid').removeClass('is-valid');
+                        }
+                     });
+               }else{
+                     window.location = response.redirect_url;
+               }
+            },
+            error: function (xhr, ajaxOptions, thrownError) { 
+                return false;
+            }
+         }); 
+         /** Form Submit End */
+      }
+   }
+</script>

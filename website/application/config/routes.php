@@ -22,6 +22,7 @@ $route['Campaign/create_campaign'] = 'Campaign/create_campaign';
 $route['sign-up/(:any)'] = 'SignUp/index/$1';
 $route['login'] ='SignUp/login_view';
 $route['login_submit'] ='SignUp/login_submit';
+$route['forgot_password'] ='SignUp/forgot_password';
 
 $route['404_override'] = 'Homepage/override_404';
 $route['translate_uri_dashes'] = FALSE;
