@@ -28,6 +28,20 @@ class Login_Model extends MY_Model {
 			}
 		return $this->response;		
 	}
+	
+	function checkUserExist($mobile) {
+		$data = $this->security->xss_clean($this->input->post('mobile_number'));
+
+		$res = $this->db->query("SELECT * FROM tbl_users WHERE official_contact_number = '".$data."'")->row_array();
+		if ($res) {
+			$temp_pass = rand(10000,99999);
+			$this->CRUD->Update('tbl_users',array('id'=>$res['id']), ['otp'=>$temp_pass]); 
+			return true;
+		} else {
+			return false;
+		}
+		return false;
+	}
 
 
 }

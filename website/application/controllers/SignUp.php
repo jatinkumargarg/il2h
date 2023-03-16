@@ -8,7 +8,7 @@ class SignUp extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('user_info')) {
-            die('hereeeee');
+            // die('hereeeee');
             redirect(site_url('dashboard-ngo'));
         }
 
@@ -190,6 +190,38 @@ class SignUp extends CI_Controller
             );
             echo json_encode($array);
             exit;
+        }
+    }
+
+    public function login_with_otp()
+    {
+        $this->data['page_title']  = 'Phone Login';
+        $this->load->view('phone_login', $this->data);
+    }
+
+    public function login_with_mobile_submit()
+    {
+        $config = array(
+            array(
+                'field' => 'mobile_number',
+                'label' => 'M0bile',
+                'rules' => 'trim',
+            )
+        );
+        $this->form_validation->set_rules($config);
+        if ($this->form_validation->run()) {
+            $result = $this->LOGIN->checkUserExist();
+            if ($result) {
+                $this->data['page_title']  = 'Mobile OTP';
+                $this->data['mobile_number']  = $this->input->post('mobile_number');
+                $this->load->view('phone_login', $this->data);
+            } else {
+                $this->session->set_flashdata('incorrent_credentials', 'User does not exist!!');
+                redirect(site_url('login_with_phone'));
+            }
+        } else {
+            $this->session->set_flashdata('incorrent_credentials', 'Invalid Mobile number!!');
+            redirect(site_url('login_with_phone'));
         }
     }
 }

@@ -1,5 +1,4 @@
 <?php $this->load->view('include/signup-header', array('is_login_page' => 1)) ?>
-
    <main class="signUp">
       <div class="row half g-0">
          <div class="col-md-12 col-lg-6 leftPanel">
@@ -39,83 +38,62 @@
                      </g>
                   </svg>
                </div>
-               <h3 class="loginHeading">Log In</h3>
-               <p class="loginSubHeading">By clicking Sign Up you agree to our <a href="#">Terms</a>. Learn how we process your data in our <a href="#">Privacy Policy</a> and <a href="#">Cookie policy</a>.</p>
-               <!-- Login Buttons -->
-               <div class="loginBtnsWrap">
-                  <div class="row">
-                     <div class="col">
-                        <button type="button" class="loginBtn">
-                           <i class="loginBtnIcon">
-                              <img src="assets/images/FACEBOOK.svg">
-                           </i> 
-                           <span class="loginBtnText">Facebook</span>
-                        </button>
-                     </div>
-                     <div class="col">
-                        <button type="button" class="loginBtn">
-                           <i class="loginBtnIcon">
-                              <img src="assets/images/FACEBOOK.svg">
-                           </i> 
-                           <span class="loginBtnText">Google</span>
-                        </button>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col">
-                        <a type="button" href="<?=site_url('login_with_phone');?>" class="loginBtn">Phone Number</a>
-                     </div>
-                  </div>
+               <div class="navBtn">
+                  <a class="backBtn" href="<?=site_url('login');?>"></a>
                </div>
-               <div class="divider">
-                  OR
-               </div>
+               <h3 class="loginHeading">Enter Your Mobile Number</h3>
+               <p class="loginSubHeading">We will sent a 6 digit OTP on your mobile…</p>
                <form action="SignUp/login_submit" method="POST">
                   <div class="row">
-                     <div class="col-md-12">
+                     <div class="col-md-2">
                         <div class="form-group">
-                           <input type="email" class="form-control" id="inputEmail" placeholder="Your Email" aria-describedby="inputEmail" required name="data[email]">
+                           <input type="text" class="form-control" id="mobilecode" placeholder="+91" aria-describedby="mobilecode" name ='mobile_number' required>
                            <div class="invalid-tooltip">
-                              Please choose a username.
+                              Enter mobile number.
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-12">
+                     <div class="col-md-10">
                         <div class="form-group">
-                           <input type="password" class="form-control" placeholder="Password" id="inputPassword" required name="data[password]">
+                           <input type="text" class="form-control" placeholder="Enter Your 10 Digit Number" id="mobilenumber" required maxlength="10">
                         </div>
                      </div>
+                     <?php if ($this->session->flashdata('incorrent_credentials')) { ?>
+                    <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <?php echo $this->session->flashdata('incorrent_credentials'); ?>
+                    </div>
+                  <?php } ?>
                      <div class="col-md-12">
                         <div class="form-group">
                            <div class="d-flex mb-3 align-items-center">
                               <div class="checkBoxWrap remember">
-                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                                  <label class="form-check-label" for="flexCheckDefault">
-                                    Remember Me
+                                    <!-- Remember Me -->
                                  </label>
                               </div>
                               <span class="ms-auto"><a href="<?=site_url('forgot_password');?>" class="forgotPass">Forgot Password</a></span> 
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <div class="col-md-12">
-                     <button type="submit" class="btn fullWidthBtn">LOGIN</button>
-                  </div>
-                  <?php if ($this->session->flashdata('incorrent_credentials')) { ?>
-                    <div class="alert alert-danger">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                        <?php echo $this->session->flashdata('incorrent_credentials'); ?>
-                    </div>
-                  <?php } ?>
-                  <div class="bottomHeading justify-content-center">
-                     Don’t have an account? &nbsp; <a href="<?=site_url('');?>">Get Started</a>
-                  </div>
+                     <div class="col-md-12">
+                        <button type="submit" class="btn fullWidthBtn">CONTINUE</button>
+                     </div>
+                     <div class="bottomHeading justify-content-center">
+                        Don’t have Mobile Number? &nbsp;<a href="<?=site_url('login');?>">Login With Email</a>
+                     </div>
+                  </form>
 
-               </form>
-
+                  <!-- need To Remove in dev start -->
+                  <!-- <a href="verifyOtp.html">Verify OTP</a> -->
+                  <!-- need To Remove in dev End -->
+               </div>
             </div>
          </div>
-      </div>
-   </main>
-<?php $this->load->view('include/signup-footer') ?>
+      </main>
+      <script type="text/javascript" src="assets/js/jQuery.js"></script>
+      <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="assets/js/main.js"></script>
+   </body>
+   </html>
